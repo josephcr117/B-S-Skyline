@@ -6,7 +6,7 @@ namespace B_S_Skyline.Services
     public static class FirebaseAuthHelper
     {
         public const string firebaseAppId = "bsskyline-dc061";
-        public const string firebaseApiKey = "AIzaSyDuU3-cIPSct_TcOL2CUyunYkMLcWqpIBQ";
+        public const string firebaseApiKey = "";
 
         public static FirebaseAuthClient AuthClient => new(new FirebaseAuthConfig()
         {
