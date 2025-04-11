@@ -1,0 +1,43 @@
+﻿@model B_S_Skyline.Models.ResidentialProject
+
+@{
+    ViewData["Title"] = "Delete Project";
+}
+
+<h2>Delete Project</h2>
+
+<h3>Are you sure you want to delete '@Model.Name'?</h3>
+<div>
+    <h4>This action cannot be undone</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">Project Code:</dt>
+        <dd class="col-sm-9">@Model.Code</dd>
+
+        <dt class="col-sm-3">Address:</dt>
+        <dd class="col-sm-9">@Model.Address</dd>
+
+        <dt class="col-sm-3">Office Phone:</dt>
+        <dd class="col-sm-9">@Model.OfficePhone</dd>
+
+        <dt class="col-sm-3">House Numbers:</dt>
+        <dd class="col-sm-9">
+            @if (Model.HouseNumbers != null && Model.HouseNumbers.Any())
+            {
+                @string.Join(", ", Model.HouseNumbers)
+            }
+            else
+            {
+                <span class="text-muted">None assigned</span>
+            }
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group mt-4">
+            <input type="submit" value="Confirm Delete" class="btn btn-danger" />
+            <a asp-action="Index" class="btn btn-secondary ml-2">Cancel</a>
+        </div>
+    </form>
+</div>

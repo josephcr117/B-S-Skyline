@@ -1,0 +1,41 @@
+﻿@model B_S_Skyline.Models.ResidentialProject
+
+<h2>Create New Project</h2>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Name" class="control-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Code" class="control-label"></label>
+        <input asp-for="Code" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address" class="control-label"></label>
+        <input asp-for="Address" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="OfficePhone" class="control-label"></label>
+        <input asp-for="OfficePhone" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">House Numbers (comma separated)</label>
+        <input name="HouseNumbersInput" class="form-control" placeholder="154, 120, 35" />
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

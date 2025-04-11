@@ -1,0 +1,47 @@
+﻿@model List<B_S_Skyline.Models.ResidentialProject>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<h2>All Residential Projects</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Office Phone</th>
+            <th>Houses</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var project in Model)
+        {
+            <tr>
+                <td>@project.Code</td>
+                <td>@project.Name</td>
+                <td>@project.Address</td>
+                <td>@project.OfficePhone</td>
+                <td>@string.Join(", ", project.HouseNumbers)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@project.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@project.Id">Details</a>
+                    <a asp-action="Delete" asp-route-id="@project.Id" class="text-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">Add New Project</a>

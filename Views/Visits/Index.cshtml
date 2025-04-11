@@ -1,0 +1,56 @@
+﻿@model List<Visit>
+
+<h2>Visits</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Visitor</th>
+            <th>Entry Time</th>
+            <th>License Plate</th>
+            <th>Actions</th>
+            @* <th>Type</th> *@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var visit in Model)
+        {
+            <tr>
+                <td>@visit.VisitorName</td>
+                <td>@visit.EntryTime.ToString("g")</td>
+                <td>@visit.LicensePlate</td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <a asp-action="Details" asp-route-id="@visit.Id"
+                           class="btn btn-info" title="Details">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a asp-action="Edit" asp-route-id="@visit.Id"
+                           class="btn btn-warning" title="Edit">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@visit.Id"
+                           class="btn btn-danger" title="Delete">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </div>
+                </td>
+                @* <td>
+                    @if (visit.IsDelivery)
+                    {
+                        <span class="badge bg-info">
+                            <i class="fas fa-motorcycle"></i>
+                            @visit.DeliveryServiceDisplayName
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">Regular Visit</span>
+                    }
+                </td> *@
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-primary">New Visit</a>

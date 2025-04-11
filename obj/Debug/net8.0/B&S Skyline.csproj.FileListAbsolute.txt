@@ -1,0 +1,53 @@
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\B&S Skyline.csproj.AssemblyReference.cache
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\B&S Skyline.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\B&S Skyline.AssemblyInfoInputs.cache
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\B&S Skyline.AssemblyInfo.cs
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\B&S Skyline.csproj.CoreCompileInputs.cache
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\B&S Skyline.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\B&S Skyline.RazorAssemblyInfo.cache
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\B&S Skyline.RazorAssemblyInfo.cs
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\appsettings.json
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\B&S Skyline.staticwebassets.runtime.json
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\B&S Skyline.staticwebassets.endpoints.json
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\B&S Skyline.exe
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\B&S Skyline.deps.json
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\B&S Skyline.runtimeconfig.json
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\B&S Skyline.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\B&S Skyline.pdb
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\FirebaseAdmin.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\Firebase.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\Google.Api.Gax.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\Google.Api.Gax.Rest.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\Google.Apis.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\Google.Apis.Auth.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\Google.Apis.Core.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\LiteDB.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\System.Reactive.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\scopedcss\bundle\B&S Skyline.styles.css
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\scopedcss\projectbundle\B&S Skyline.bundle.scp.css
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\staticwebassets\msbuild.B&S Skyline.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\staticwebassets\msbuild.B&S Skyline.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\staticwebassets\msbuild.build.B&S Skyline.props
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.B&S Skyline.props
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.B&S Skyline.props
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\B&S Skyl.85D8A454.Up2Date
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\B&S Skyline.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\refint\B&S Skyline.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\B&S Skyline.pdb
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\B&S Skyline.genruntimeconfig.cache
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\ref\B&S Skyline.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\bsskyline-dc061-firebase-adminsdk-fbsvc-dc50c3d785.json
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\Firebase.Auth.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\System.ServiceModel.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\System.CodeDom.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\System.Management.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Management.dll

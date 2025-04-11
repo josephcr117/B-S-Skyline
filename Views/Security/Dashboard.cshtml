@@ -1,0 +1,89 @@
+﻿@using B_S_Skyline.ViewModels
+@model SecurityDashboardVM
+
+<h2>Security Dashboard</h2>
+
+<!-- Project Selection -->
+<div class="card mb-4">
+    <div class="card-header">
+        <h5>Active Project</h5>
+    </div>
+    <div class="card-body">
+        <form asp-action="SetProject" method="post">
+            <div class="form-group">
+                <select name="projectId" class="form-control"
+                        asp-items="Model.Projects.Select(p => new SelectListItem {
+                            Value = p.Id,
+                            Text = p.Name
+                        })">
+                    <option value="">-- Select Project --</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Set Active Project</button>
+        </form>
+    </div>
+</div>
+
+<!-- Visitor Search -->
+<div class="card mb-4">
+    <div class="card-header">
+        <h5>Visitor Verification</h5>
+    </div>
+    <div class="card-body">
+        <form id="searchForm">
+            <div class="form-group">
+                <input type="text" id="searchQuery" class="form-control"
+                       placeholder="Search by name, plate, or unit" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Active Visits -->
+<h4>Active Visits</h4>
+<table class="table" id="visitsTable">
+    <thead>
+        <tr>
+            <th>Visitor</th>
+            <th>License Plate</th>
+            <th>Entry Time</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var visit in Model.ActiveVisits)
+        {
+            <tr>
+                <td>@visit.VisitorName</td>
+                <td>@visit.LicensePlate</td>
+                <td>@visit.EntryTime.ToString("g")</td>
+                <td>
+                    <button class="btn btn-success btn-sm approve-btn"
+                            data-visit-id="@visit.Id">
+                        Approve Entry
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        // Real-time search
+        $('#searchQuery').keyup(function() {
+            const query = $(this).val().toLowerCase();
+            $('#visitsTable tbody tr').each(function() {
+                const text = $(this).text().toLowerCase();
+                $(this).toggle(text.includes(query));
+            });
+        });
+
+        // Approve entry
+        $('.approve-btn').click(function() {
+            const visitId = $(this).data('visit-id');
+            // Call API to mark as approved
+            console.log("Approved visit:", visitId);
+        });
+    </script>
+}

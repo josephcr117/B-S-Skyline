@@ -1,0 +1,34 @@
+﻿@model Visit
+
+<h2>Visit Details</h2>
+
+<div class="card">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">Visitor:</dt>
+            <dd class="col-sm-9">@Model.VisitorName</dd>
+
+            <dt class="col-sm-3">DNI:</dt>
+            <dd class="col-sm-9">@Model.VisitorDni</dd>
+
+            <dt class="col-sm-3">Entry Time:</dt>
+            <dd class="col-sm-9">@Model.EntryTime.ToString("g")</dd>
+
+            <dt class="col-sm-3">License Plate:</dt>
+            <dd class="col-sm-9">@Model.LicensePlate</dd>
+
+            <dt class="col-sm-3">Resident:</dt>
+            <dd class="col-sm-9">@ViewBag.ResidentName</dd>
+
+            @if (Model.IsDelivery)
+            {
+                <dt class="col-sm-3">Delivery Service:</dt>
+                <dd class="col-sm-9">@Model.DeliveryService</dd>
+            }
+        </dl>
+    </div>
+    <div class="card-footer">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+    </div>
+</div>

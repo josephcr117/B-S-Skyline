@@ -1,0 +1,97 @@
+﻿@model Resident
+
+@{
+    ViewData["Title"] = "Resident Details";
+}
+
+<div class="card">
+    <div class="card-header bg-primary text-white">
+        <h3>@Model.Name</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <!-- Left Column - Basic Info -->
+            <div class="col-md-6">
+                <dl class="row">
+                    <dt class="col-sm-4">DNI:</dt>
+                    <dd class="col-sm-8">@Model.Dni</dd>
+
+                    <dt class="col-sm-4">Email:</dt>
+                    <dd class="col-sm-8">@Model.Email</dd>
+
+                    <dt class="col-sm-4">Unit Number:</dt>
+                    <dd class="col-sm-8">@Model.UnitNumber</dd>
+
+                    <dt class="col-sm-4">Phone Numbers:</dt>
+                    <dd class="col-sm-8">
+                        @if (Model.PhoneNumbers != null && Model.PhoneNumbers.Any())
+                        {
+                            @string.Join(", ", Model.PhoneNumbers)
+                        }
+                        else
+                        {
+                            <span class="text-muted">None registered</span>
+                        }
+                    </dd>
+                </dl>
+            </div>
+
+            <!-- Right Column - Project Info -->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Project Assignment</h5>
+                    </div>
+                    <div class="card-body">
+                        @if (ViewBag.ProjectName != null)
+                        {
+                            <p>
+                                <strong>@ViewBag.ProjectName</strong><br>
+                                <small class="text-muted">Code: @ViewBag.ProjectCode</small>
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="text-muted">Not assigned to any project</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        <a asp-controller="Visits" asp-action="Create"
+           asp-route-residentId="@Model.Id"
+           class="btn btn-primary">
+            Register New Visit
+        </a>
+    </div>
+</div>
+
+@* <!-- Placeholder for future photo display -->
+@if (!string.IsNullOrEmpty(Model.PhotoUrl))
+{
+    <div class="mt-4">
+        <h4>Profile Photo</h4>
+        <img src="@Model.PhotoUrl" alt="Resident Photo" class="img-thumbnail" style="max-width: 200px;">
+    </div>
+}
+@section Scripts {
+    <script>
+        document.getElementById('PhotoFile').addEventListener('change', function(e) {
+            var output = document.createElement('img');
+            output.src = URL.createObjectURL(e.target.files[0]);
+            output.width = 100;
+            output.className = 'img-thumbnail mt-2';
+
+            var container = e.target.parentElement.querySelector('.image-preview') ||
+                           document.createElement('div');
+            container.className = 'image-preview';
+            container.innerHTML = '';
+            container.appendChild(output);
+            e.target.parentElement.appendChild(container);
+        });
+    </script>
+} *@

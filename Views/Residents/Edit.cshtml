@@ -1,0 +1,65 @@
+﻿@model Resident
+
+<h2>Edit Resident</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label asp-for="Dni"></label>
+        <input asp-for="Dni" class="form-control" readonly />
+        <small class="text-muted">DNI cannot be modified</small>
+        <input type="hidden" asp-for="Dni" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Phone Numbers (comma separated)</label>
+        <input name="phoneNumbersInput" value="@ViewBag.PhoneNumbersInput" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" type="email" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label>Project Assignment</label>
+        <select asp-for="ProjectId" class="form-control" required>
+            <option value="">-- Select Project --</option>
+            @foreach (var project in ViewBag.Projects)
+            {
+                <option value="@project.Value" selected="@project.Selected">@project.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UnitNumber"></label>
+        <input asp-for="UnitNumber" class="form-control" required />
+    </div>
+    @*     <div class="form-group">
+        <label asp-for="PhotoFile"></label>
+        <input type="file" asp-for="PhotoFile" class="form-control-file" accept="image/*">
+        @if (Model != null && !string.IsNullOrEmpty(Model.PhotoUrl))
+        {
+            <div class="mt-2">
+                <img src="@Model.PhotoUrl" width="100" class="img-thumbnail"
+                     alt="Current profile photo">
+            </div>
+        }
+        else
+        {
+            <div class="mt-2 text-muted">
+                No photo uploaded yet
+            </div>
+        }
+    </div> *@
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
