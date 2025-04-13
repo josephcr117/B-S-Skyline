@@ -1,0 +1,65 @@
+﻿@model B_S_Skyline.Models.UserModel
+
+<h2>Edit User</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="Uid" />
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Role"></label>
+        <select asp-for="Role" class="form-control">
+            <option value="Owner">Owner</option>
+            <option value="Resident">Resident</option>
+            <option value="SecurityOfficer">Security Officer</option>
+        </select>
+        <span asp-validation-for="Role" class="text-danger"></span>
+    </div>
+
+    @if (Model.Role == "Resident")
+    {
+        <div class="form-group">
+            <label asp-for="ResidentId">Resident ID</label>
+            <input asp-for="ResidentId" class="form-control" />
+        </div>
+    }
+
+    @if (Model.Role == "SecurityOfficer")
+    {
+        <div class="form-group">
+            <label asp-for="BadgeNumber">Badge Number</label>
+            <input asp-for="BadgeNumber" class="form-control" />
+        </div>
+    }
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            toggleRoleFields();
+
+            $('#Role').change(function() {
+                toggleRoleFields();
+            });
+
+            function toggleRoleFields() {
+                $('#ResidentId').closest('.form-group').hide();
+                $('#BadgeNumber').closest('.form-group').hide();
+
+                if ($('#Role').val() === 'Resident') {
+                    $('#ResidentId').closest('.form-group').show();
+                } else if ($('#Role').val() === 'SecurityOfficer') {
+                    $('#BadgeNumber').closest('.form-group').show();
+                }
+            }
+        });
+    </script>
+}

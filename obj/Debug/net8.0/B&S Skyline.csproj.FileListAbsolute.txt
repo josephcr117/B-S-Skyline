@@ -51,3 +51,4 @@ C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\System.Serv
 C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\System.CodeDom.dll
 C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\System.Management.dll
 C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Management.dll
+C:\Users\Josep\source\repos\B&S Skyline\B&S Skyline\obj\Debug\net8.0\B&S Skyline.sourcelink.json

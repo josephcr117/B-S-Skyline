@@ -1,0 +1,51 @@
+﻿@model List<B_S_Skyline.Models.UserModel>
+
+<h2>User Management</h2>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Actions</th> <!-- Single actions column -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>@user.Role</td>
+                <td>@(user.IsActive ? "Active" : "Inactive")</td>
+                <td>@user.CreatedAt.ToString("MM/dd/yyyy")</td>
+                <td>
+                    <a href="/UserManagement/Edit/@user.Uid" class="btn btn-sm btn-primary">Edit</a>
+
+                    @if (user.IsActive)
+                    {
+                        <form asp-action="Deactivate" method="post" style="display:inline">
+                            <input type="hidden" name="uid" value="@user.Uid" />
+                            <button type="submit" class="btn btn-sm btn-warning">Deactivate</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form asp-action="Activate" method="post" style="display:inline">
+                            <input type="hidden" name="uid" value="@user.Uid" />
+                            <button type="submit" class="btn btn-sm btn-success">Activate</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-success" href="/UserManagement/Create">Add New User</a>

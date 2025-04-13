@@ -1,4 +1,5 @@
 ﻿using B_S_Skyline.Services;
+using Firebase.Auth;
 using Microsoft.AspNetCore.Mvc;
 
 namespace B_S_Skyline.Controllers
@@ -18,21 +19,22 @@ namespace B_S_Skyline.Controllers
                 var auth = FirebaseAuthHelper.AuthClient;
                 var result = await auth.SignInWithEmailAndPasswordAsync(email, password);
 
-                var role = FirebaseAuthHelper.UserRoles[email.ToLower()];
+                var role = await FirebaseAuthHelper.GetUserRoleAsync(result.User.Uid) ?? "Unknown";
 
                 HttpContext.Session.SetString("UserId", result.User.Uid);
                 HttpContext.Session.SetString("UserEmail", email);
                 HttpContext.Session.SetString("UserRole", role);
 
-                return role switch
+                var redirect = role switch
                 {
                     "Owner" => RedirectToAction("Index", "ResidentialProjects"),
                     "Resident" => RedirectToAction("Index", "Visits"),
                     "SecurityOfficer" => RedirectToAction("Dashboard", "Security"),
                     _ => RedirectToAction("Index", "Home")
                 };
+                return redirect;
             }
-            catch (Exception)
+            catch
             {
                 TempData["Error"] = "Invalid email or password.";
                 return RedirectToAction("Index");

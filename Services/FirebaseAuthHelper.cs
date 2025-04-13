@@ -1,5 +1,6 @@
 ﻿using Firebase.Auth.Providers;
 using Firebase.Auth;
+using Firebase.Database.Query;
 
 namespace B_S_Skyline.Services
 {
@@ -14,11 +15,40 @@ namespace B_S_Skyline.Services
             AuthDomain = $"{firebaseAppId}.firebaseapp.com",
             Providers = new FirebaseAuthProvider[] { new EmailProvider() }
         });
-        public static Dictionary<string, string> UserRoles = new()
+
+        public static async Task CreateUser(string email, string password, string role)
         {
-            {"brian@bsskyline.com", "Owner"},
-            {"steven@bsskyline.com", "Resident"},
-            {"mathias@bsskyline.com", "SecurityOfficer"}
-        };
+            var auth = AuthClient;
+            var user = await auth.CreateUserWithEmailAndPasswordAsync(email, password);
+
+            var claims = new Dictionary<string, object> { { "role", role } };
+            await FirebaseAdmin.Auth.FirebaseAuth.DefaultInstance
+                .SetCustomUserClaimsAsync(user.User.Uid, claims);
+        }
+
+        //public static Dictionary<string, string> UserRoles = new()
+        //{
+        //    {"brian@bsskyline.com", "Owner"},
+        //    {"steven@bsskyline.com", "Resident"},
+        //    {"mathias@bsskyline.com", "SecurityOfficer"}
+        //};
+
+        public static async Task<string?> GetUserRoleAsync(string userId)
+        {
+            try
+            {
+                var client = FirebaseService.GetFirebaseClient();
+                var snapshot = await client
+                    .Child("Users")
+                    .Child(userId)
+                    .Child("Role")
+                    .OnceSingleAsync<string>();
+                return snapshot;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
     }
 }

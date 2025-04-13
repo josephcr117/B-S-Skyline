@@ -53,7 +53,6 @@ namespace B_S_Skyline.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error loading projects: {ex.Message}");
                 ViewBag.Projects = new List<SelectListItem>();
                 return View();
             }
