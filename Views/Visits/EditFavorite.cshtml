@@ -1,9 +1,9 @@
-﻿@model Visit
+﻿@model FavoriteVisitor
 
-<h2>Register New Visit</h2>
+<h2>Edit Favorite Visitor</h2>
 
-<form asp-action="Create">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="EditFavorite">
+    <input type="hidden" asp-for="Id" />
 
     <div class="form-group">
         <label asp-for="VisitorName" class="control-label"></label>
@@ -18,8 +18,8 @@
     </div>
 
     <div class="form-check mb-3">
-        <input type="checkbox" class="form-check-input" id="isDeliveryCheck" />
-        <label class="form-check-label" for="isDeliveryCheck">Is this a delivery?</label>
+        <input asp-for="IsDeliveryContact" class="form-check-input" id="isDeliveryCheck" />
+        <label class="form-check-label" for="isDeliveryCheck">Is this a delivery contact?</label>
     </div>
 
     <div id="deliveryServiceGroup" style="display: none;">
@@ -37,26 +37,20 @@
     </div>
 
     <div class="form-group">
-        <input type="submit" value="Register Visit" class="btn btn-primary" />
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-action="Favorites" class="btn btn-secondary">Cancel</a>
     </div>
 </form>
 
 @section Scripts {
-    <script>
-        $(document).ready(function() {
-            $('#isDeliveryCheck').change(function() {
-                const isChecked = this.checked;
-                $('#deliveryServiceGroup').toggle(isChecked);
-
-                if (!isChecked) {
-                    $('#DeliveryService').val('');
+        <script>
+            $(document).ready(function() {
+                function toggleDeliveryFields() {
+                    $('#deliveryServiceGroup').toggle($('#isDeliveryCheck').is(':checked'));
                 }
-            });
 
-            if ($('#DeliveryService').val()) {
-                $('#isDeliveryCheck').prop('checked', true);
-                $('#deliveryServiceGroup').show();
-            }
-        });
-    </script>
+                $('#isDeliveryCheck').change(toggleDeliveryFields);
+                toggleDeliveryFields(); // Initialize
+            });
+        </script>
 }

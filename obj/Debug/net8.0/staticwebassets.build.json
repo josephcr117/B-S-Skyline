@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vOxGqmE2gZIY6T9UmGb5k6u9kMllmCaeLQxG9aX11h4=",
+  "Hash": "5PvL+evvse0iXolEu5e7LXsxGCg8dp25z6Y7Z0XgAAM=",
   "Source": "B&S Skyline",
   "BasePath": "_content/B&S Skyline",
   "Mode": "Default",
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "c2tiyv64ts",
-      "Integrity": "pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=",
+      "Fingerprint": "adjawt3xux",
+      "Integrity": "clsq/quIu7r94lrGCkf0E0BzhEsysxswJH4KJzc/qPY=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -1485,7 +1485,7 @@
       ]
     },
     {
-      "Route": "css/site.c2tiyv64ts.css",
+      "Route": "css/site.adjawt3xux.css",
       "AssetFile": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1495,7 +1495,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "362"
+          "Value": "670"
         },
         {
           "Name": "Content-Type",
@@ -1503,11 +1503,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=\""
+          "Value": "\"clsq/quIu7r94lrGCkf0E0BzhEsysxswJH4KJzc/qPY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 30 Mar 2025 15:20:55 GMT"
+          "Value": "Mon, 14 Apr 2025 00:01:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1517,7 +1517,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "c2tiyv64ts"
+          "Value": "adjawt3xux"
         },
         {
           "Name": "label",
@@ -1525,7 +1525,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0="
+          "Value": "sha256-clsq/quIu7r94lrGCkf0E0BzhEsysxswJH4KJzc/qPY="
         }
       ]
     },
@@ -1540,7 +1540,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "362"
+          "Value": "670"
         },
         {
           "Name": "Content-Type",
@@ -1548,11 +1548,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0=\""
+          "Value": "\"clsq/quIu7r94lrGCkf0E0BzhEsysxswJH4KJzc/qPY=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 30 Mar 2025 15:20:55 GMT"
+          "Value": "Mon, 14 Apr 2025 00:01:07 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1562,7 +1562,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-pAGv4ietcJNk/EwsQZ5BN9+K4MuNYS2a9wl4Jw+q9D0="
+          "Value": "sha256-clsq/quIu7r94lrGCkf0E0BzhEsysxswJH4KJzc/qPY="
         }
       ]
     },

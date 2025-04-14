@@ -1,0 +1,60 @@
+﻿@model UserModel
+
+<h2>Edit Resident</h2>
+
+<form asp-action="EditResident">
+    <input type="hidden" asp-for="Uid" />
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" readonly />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Dni" class="control-label"></label>
+                <input asp-for="Dni" class="form-control" />
+                <span asp-validation-for="Dni" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ProjectId" class="control-label"></label>
+                <select asp-for="ProjectId" class="form-control" asp-items="ViewBag.Projects">
+                    <option value="">Select Project</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="UnitNumber" class="control-label"></label>
+                <input asp-for="UnitNumber" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="control-label">Phone Numbers (comma separated)</label>
+                <input name="phoneNumbersInput" class="form-control"
+                       value="@(Model.PhoneNumbers != null ? string.Join(", ", Model.PhoneNumbers) : "")" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group mt-3">
+        <button type="submit" class="btn btn-primary">
+            <i class="fas fa-save"></i> Save Changes
+        </button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

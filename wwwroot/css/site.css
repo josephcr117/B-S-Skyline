@@ -20,3 +20,24 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Badge styling */
+.badge {
+    font-size: 0.9rem;
+    padding: 0.35em 0.65em;
+}
+
+/* Form spacing */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+/* Readonly fields */
+input[readonly] {
+    background-color: #f8f9fa;
+}
+
+/* Responsive tables */
+.table-responsive {
+    overflow-x: auto;
+}

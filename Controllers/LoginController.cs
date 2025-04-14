@@ -27,7 +27,7 @@ namespace B_S_Skyline.Controllers
 
                 var redirect = role switch
                 {
-                    "Owner" => RedirectToAction("Index", "ResidentialProjects"),
+                    "Owner" => RedirectToAction("Index", "UserManagement"),
                     "Resident" => RedirectToAction("Index", "Visits"),
                     "SecurityOfficer" => RedirectToAction("Dashboard", "Security"),
                     _ => RedirectToAction("Index", "Home")

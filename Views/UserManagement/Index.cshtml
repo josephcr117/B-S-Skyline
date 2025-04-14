@@ -1,4 +1,4 @@
-﻿@model List<B_S_Skyline.Models.UserModel>
+﻿@model List<UserModel>
 
 <h2>User Management</h2>
 
@@ -6,15 +6,19 @@
 {
     <div class="alert alert-success">@TempData["Success"]</div>
 }
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
 
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>Email</th>
             <th>Role</th>
+            <th>Details</th>
             <th>Status</th>
-            <th>Created</th>
-            <th>Actions</th> <!-- Single actions column -->
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -22,30 +26,64 @@
         {
             <tr>
                 <td>@user.Email</td>
-                <td>@user.Role</td>
-                <td>@(user.IsActive ? "Active" : "Inactive")</td>
-                <td>@user.CreatedAt.ToString("MM/dd/yyyy")</td>
                 <td>
-                    <a href="/UserManagement/Edit/@user.Uid" class="btn btn-sm btn-primary">Edit</a>
+                    <span class="badge @GetRoleBadgeClass(user.Role)">
+                        @user.Role
+                    </span>
+                </td>
+                <td>
+                    @if (user.Role == "Resident")
+                    {
+                        <span>@user.Name (Unit @user.UnitNumber)</span>
+                    }
+                    else if (user.Role == "SecurityOfficer")
+                    {
+                        <span>@user.Name - Badge #@user.BadgeNumber</span>
+                    }
+                </td>
+                <td>
+                    <span class="badge @(user.IsActive ? "bg-success" : "bg-warning")">
+                        @(user.IsActive ? "Active" : "Inactive")
+                    </span>
+                </td>
+                <td>
+                    @if (user.Role == "Resident")
+                    {
+                        <a asp-action="EditResident" asp-route-id="@user.Uid" class="btn btn-sm btn-primary">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                    }
+                    else if (user.Role == "SecurityOfficer")
+                    {
+                        <a asp-action="EditOfficer" asp-route-id="@user.Uid" class="btn btn-sm btn-primary">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                    }
 
-                    @if (user.IsActive)
-                    {
-                        <form asp-action="Deactivate" method="post" style="display:inline">
-                            <input type="hidden" name="uid" value="@user.Uid" />
-                            <button type="submit" class="btn btn-sm btn-warning">Deactivate</button>
-                        </form>
-                    }
-                    else
-                    {
-                        <form asp-action="Activate" method="post" style="display:inline">
-                            <input type="hidden" name="uid" value="@user.Uid" />
-                            <button type="submit" class="btn btn-sm btn-success">Activate</button>
-                        </form>
-                    }
+                    <form asp-action="ToggleStatus" method="post" style="display:inline">
+                        <input type="hidden" name="uid" value="@user.Uid" />
+                        <input type="hidden" name="isActive" value="@(!user.IsActive)" />
+                        <button type="submit" class="btn btn-sm @(user.IsActive ? "btn-warning" : "btn-success")">
+                            <i class="fas @(user.IsActive ? "fa-times" : "fa-check")"></i>
+                            @(user.IsActive ? "Deactivate" : "Activate")
+                        </button>
+                    </form>
                 </td>
             </tr>
         }
     </tbody>
 </table>
 
-<a class="btn btn-success" href="/UserManagement/Create">Add New User</a>
+<a asp-action="Create" class="btn btn-success">
+    <i class="fas fa-plus"></i> Add New User
+</a>
+
+@functions {
+    string GetRoleBadgeClass(string role) => role switch
+    {
+        "Owner" => "bg-primary",
+        "Resident" => "bg-info",
+        "SecurityOfficer" => "bg-secondary",
+        _ => "bg-light text-dark"
+    };
+}

@@ -106,8 +106,8 @@ namespace B_S_Skyline.Controllers
             try
             {
                 var residents = await _firebase
-                    .Child("residents")
-                    .OnceAsync<Resident>();
+                    .Child("Users")
+                    .OnceAsync<UserModel>();
                 if (residents.Any(r => r.Object.ProjectId == id))
                 {
                     TempData["ErrorMessage"] = "Cannot delete - Project has assisgned residents";

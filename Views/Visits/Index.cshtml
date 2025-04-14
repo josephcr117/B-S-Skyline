@@ -9,7 +9,8 @@
             <th>Entry Time</th>
             <th>License Plate</th>
             <th>Actions</th>
-            @* <th>Type</th> *@
+            <th>Type</th>
+            <th>Favorite</th>
         </tr>
     </thead>
     <tbody>
@@ -35,7 +36,7 @@
                         </a>
                     </div>
                 </td>
-                @* <td>
+                <td>
                     @if (visit.IsDelivery)
                     {
                         <span class="badge bg-info">
@@ -47,10 +48,22 @@
                     {
                         <span class="badge bg-secondary">Regular Visit</span>
                     }
-                </td> *@
+                </td>
+                <td>
+                    <form asp-action="ToggleFavorite" method="post">
+                        <input type="hidden" name="id" value="@visit.Id" />
+                        <button type="submit" class="btn btn-sm @(visit.IsFavorite ? "btn-success" : "btn-outline-secondary")"
+                                title="@(visit.IsFavorite ? "Remove from favorites" : "Add to favorites")">
+                            <i class="fas @(visit.IsFavorite ? "fa-star" : "fa-star-o")"></i>
+                        </button>
+                    </form>
+                </td>
             </tr>
         }
     </tbody>
 </table>
 
 <a asp-action="Create" class="btn btn-primary">New Visit</a>
+<a asp-action="Favorites" class="btn btn-info">
+    <i class="fas fa-star"></i> View Favorites
+</a>

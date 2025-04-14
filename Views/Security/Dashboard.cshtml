@@ -70,7 +70,6 @@
 
 @section Scripts {
     <script>
-        // Real-time search
         $('#searchQuery').keyup(function() {
             const query = $(this).val().toLowerCase();
             $('#visitsTable tbody tr').each(function() {
@@ -79,10 +78,9 @@
             });
         });
 
-        // Approve entry
         $('.approve-btn').click(function() {
             const visitId = $(this).data('visit-id');
-            // Call API to mark as approved
+
             console.log("Approved visit:", visitId);
         });
     </script>

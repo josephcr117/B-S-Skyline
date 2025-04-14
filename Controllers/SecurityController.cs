@@ -71,7 +71,7 @@ namespace B_S_Skyline.Controllers
 
             var cleanPlate = licensePlate?.Trim().Replace("-", "").Replace(" ", "").ToUpper();
 
-            var residents = (await _firebase.Child("residents").OnceAsync<Resident>())
+            var residents = (await _firebase.Child("Users").OnceAsync<UserModel>())
                 .Where(r => r.Object.Vehicles?.Any(v =>
                 v.Split('|')[0]
                 .Replace("-", "").Replace(" ", "").ToUpper() == cleanPlate) ?? false)
