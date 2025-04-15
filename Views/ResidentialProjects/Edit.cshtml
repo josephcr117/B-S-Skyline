@@ -7,28 +7,35 @@
 
     <div class="form-group">
         <label asp-for="Name" class="control-label"></label>
-        <input asp-for="Name" class="form-control" />
+        <input asp-for="Name" class="form-control" placeholder="Enter project name" />
     </div>
 
     <div class="form-group">
         <label asp-for="Code" class="control-label"></label>
-        <input asp-for="Code" class="form-control" />
+        <input asp-for="Code" class="form-control" placeholder="Enter project code" />
     </div>
 
     <div class="form-group">
         <label asp-for="Address" class="control-label"></label>
-        <input asp-for="Address" class="form-control" />
+        <input asp-for="Address" class="form-control" placeholder="Enter project address" />
     </div>
 
     <div class="form-group">
         <label asp-for="OfficePhone" class="control-label"></label>
-        <input asp-for="OfficePhone" class="form-control" />
+        <input asp-for="OfficePhone" class="form-control" placeholder="Enter office phone number" />
     </div>
 
     <div class="form-group">
-        <label class="control-label">House Numbers (comma separated)</label>
+        <label class="control-label">House Numbers (comma-separated or ranges)</label>
         <input name="HouseNumbersInput" class="form-control"
-               value="@string.Join(", ", Model.HouseNumbers)" />
+               value="@string.Join(", ", Model.HouseNumbers)"
+               placeholder="e.g., 154, 120, 101-105" />
+        <small class="form-text text-muted">
+            Enter house numbers as individual numbers (e.g., 154, 120) or ranges (e.g., 101-105).
+        </small>
+        <div id="validationMessage" style="color: red; font-size: 0.9em; display: none;">
+            Invalid format. Please use numbers or ranges separated by commas.
+        </div>
     </div>
 
     <div class="form-group">
@@ -36,3 +43,20 @@
         <a asp-action="Index" class="btn btn-secondary">Cancel</a>
     </div>
 </form>
+
+@section Scripts {
+    <script>
+        // Real-time validation for HouseNumbersInput
+        document.querySelector("[name='HouseNumbersInput']").addEventListener("input", function () {
+            const input = this.value;
+            const isValid = /^(\d+(-\d+)?)(,\s*\d+(-\d+)?)*$/.test(input);
+            const validationMessage = document.getElementById("validationMessage");
+
+            if (!isValid && input.length > 0) {
+                validationMessage.style.display = "block";
+            } else {
+                validationMessage.style.display = "none";
+            }
+        });
+    </script>
+}

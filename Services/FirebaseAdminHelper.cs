@@ -12,7 +12,7 @@ namespace B_S_Skyline.Services
         {
             if (!_initialized)
             {
-                FirebaseApp.Create(new AppOptions()
+                _firebaseApp = FirebaseApp.Create(new AppOptions()
                 {
                     Credential = GoogleCredential.FromFile("C:/Users/Josep/source/repos/B&S Skyline/B&S Skyline/bsskyline-dc061-firebase-adminsdk-fbsvc-dc50c3d785.json")
                 });

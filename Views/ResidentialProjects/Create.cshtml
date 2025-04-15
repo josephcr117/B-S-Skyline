@@ -25,8 +25,11 @@
     </div>
 
     <div class="form-group">
-        <label class="control-label">House Numbers (comma separated)</label>
-        <input name="HouseNumbersInput" class="form-control" placeholder="154, 120, 35" />
+        <label class="control-label">House Numbers (comma separated or ranges)</label>
+        <input name="HouseNumbersInput" class="form-control" placeholder="e.g., 154, 120, 101-105" />
+        <small class="form-text text-muted">
+            Enter house numbers as individual numbers (e.g., 154, 120) or ranges (e.g., 101-105).
+        </small>
     </div>
 
     <div class="form-group">
@@ -35,7 +38,16 @@
 </form>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    <script>
+        document.querySelector("form").addEventListener("submit", function (e) {
+            const houseNumbersInput = document.querySelector("[name='HouseNumbersInput']").value;
+
+            
+            const valid = /^(\d+(-\d+)?)(,\s*\d+(-\d+)?)*$/.test(houseNumbersInput);
+            if (!valid) {
+                e.preventDefault();
+                alert("Please enter house numbers in a valid format: e.g., '154, 120, 101-105'");
+            }
+        });
+    </script>
 }

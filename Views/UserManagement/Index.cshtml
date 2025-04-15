@@ -10,7 +10,15 @@
 {
     <div class="alert alert-danger">@TempData["Error"]</div>
 }
-
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}
 <table class="table table-striped">
     <thead>
         <tr>
@@ -60,11 +68,10 @@
                         </a>
                     }
 
-                    <form asp-action="ToggleStatus" method="post" style="display:inline">
+                    <form asp-action="ToggleStatus" method="post" asp-route-uid="@user.Uid">
                         <input type="hidden" name="uid" value="@user.Uid" />
                         <input type="hidden" name="isActive" value="@(!user.IsActive)" />
                         <button type="submit" class="btn btn-sm @(user.IsActive ? "btn-warning" : "btn-success")">
-                            <i class="fas @(user.IsActive ? "fa-times" : "fa-check")"></i>
                             @(user.IsActive ? "Deactivate" : "Activate")
                         </button>
                     </form>

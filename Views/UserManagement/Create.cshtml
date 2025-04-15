@@ -1,183 +1,61 @@
-﻿@model UserModel
+﻿@model B_S_Skyline.Models.UserModel
 
-@{
-    ViewData["Title"] = "Create New User";
-}
+<h2>Create New User</h2>
 
-<div class="card">
-    <div class="card-header bg-primary text-white">
-        <h2 class="mb-0">Create New User</h2>
+@using (Html.BeginForm("Create", "UserManagement", FormMethod.Post))
+{
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" placeholder="Enter Full Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
-    <div class="card-body">
-        @if (TempData["Error"] != null)
-        {
-            <div class="alert alert-danger alert-dismissible fade show">
-                @TempData["Error"]
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        }
 
-        <form asp-action="Create" id="userForm">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group mb-3">
-                        <label asp-for="Email" class="form-label"></label>
-                        <input asp-for="Email" class="form-control" placeholder="user@example.com" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label class="form-label">Password</label>
-                        <input name="password" type="password" class="form-control"
-                               required minlength="6"
-                               data-toggle="tooltip"
-                               title="Must be at least 6 characters" />
-                        <small class="form-text text-muted">Minimum 6 characters</small>
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label asp-for="Role" class="form-label"></label>
-                        <select asp-for="Role" class="form-select" id="roleSelect" required>
-                            <option value="">Select Role</option>
-                            <option value="Resident">Resident</option>
-                            <option value="SecurityOfficer">Security Officer</option>
-                            <option value="Owner">Owner</option>
-                        </select>
-                        <span asp-validation-for="Role" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Resident Fields -->
-            <div id="residentFields" class="mt-3" style="display:none;">
-                <h4 class="border-bottom pb-2 mb-3">Resident Information</h4>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group mb-3">
-                            <label asp-for="Name" class="form-label"></label>
-                            <input asp-for="Name" class="form-control" placeholder="Full name" />
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label asp-for="Dni" class="form-label"></label>
-                            <input asp-for="Dni" class="form-control" placeholder="ID number" />
-                            <span asp-validation-for="Dni" class="text-danger"></span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group mb-3">
-                            <label asp-for="ProjectId" class="form-label"></label>
-                            <select asp-for="ProjectId" class="form-select" asp-items="ViewBag.Projects">
-                                <option value="">Select Project</option>
-                            </select>
-                            <span asp-validation-for="ProjectId" class="text-danger"></span>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label asp-for="UnitNumber" class="form-label"></label>
-                            <input asp-for="UnitNumber" class="form-control" placeholder="Unit/House number" />
-                            <span asp-validation-for="UnitNumber" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group mb-3">
-                    <label class="form-label">Phone Numbers</label>
-                    <input name="phoneNumbersInput" class="form-control"
-                           value="@(Model.PhoneNumbers != null ? string.Join(", ", Model.PhoneNumbers) : "")"
-                           placeholder="8888-8888, 9999-9999" />
-                    <small class="form-text text-muted">Separate multiple numbers with commas</small>
-                </div>
-            </div>
-
-            <!-- Security Officer Fields -->
-            <div id="officerFields" class="mt-3" style="display:none;">
-                <h4 class="border-bottom pb-2 mb-3">Security Officer Information</h4>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group mb-3">
-                            <label asp-for="Name" class="form-label"></label>
-                            <input asp-for="Name" class="form-control" placeholder="Full name" />
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group mb-3">
-                            <label asp-for="BadgeNumber" class="form-label"></label>
-                            <input asp-for="BadgeNumber" class="form-control" placeholder="Badge number" />
-                            <span asp-validation-for="BadgeNumber" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group mt-4">
-                <button type="submit" class="btn btn-primary px-4">
-                    <i class="fas fa-save me-2"></i>Create User
-                </button>
-                <a asp-action="Index" class="btn btn-outline-secondary px-4">
-                    <i class="fas fa-times me-2"></i>Cancel
-                </a>
-            </div>
-        </form>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" type="email" class="form-control" placeholder="Enter Email Address" />
+        <span asp-validation-for="Email" class="text-danger"></span>
     </div>
-</div>
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    <div class="form-group">
+        <label asp-for="Role"></label>
+        <select asp-for="Role" class="form-control">
+            <option value="" disabled selected>Select Role</option>
+            <option value="Resident">Resident</option>
+            <option value="SecurityOfficer">Security Officer</option>
+        </select>
+        <span asp-validation-for="Role" class="text-danger"></span>
+    </div>
 
-    <script>
-        $(document).ready(function() {
-            // Initialize tooltips
-            $('[data-toggle="tooltip"]').tooltip();
+    <div class="form-group">
+        <label asp-for="Dni"></label>
+        <input asp-for="Dni" class="form-control" placeholder="Enter ID Number" />
+        <span asp-validation-for="Dni" class="text-danger"></span>
+    </div>
 
-            // Role-based field visibility
-            $('#roleSelect').change(function() {
-                $('#residentFields').hide();
-                $('#officerFields').hide();
+    <div class="form-group">
+        <label asp-for="PhoneNumbers">Phone Numbers (comma-separated)</label>
+        <input id="phoneNumbersInput" name="phoneNumbersInput" class="form-control" placeholder="Enter Phone Numbers" />
+        <span asp-validation-for="PhoneNumbers" class="text-danger"></span>
+    </div>
 
-                const role = $(this).val();
-                if (role === 'Resident') {
-                    $('#residentFields').show();
-                } else if (role === 'SecurityOfficer') {
-                    $('#officerFields').show();
-                }
+    <div class="form-group">
+        <label asp-for="UnitNumber"></label>
+        <input asp-for="UnitNumber" class="form-control" placeholder="Enter Unit Number" />
+        <span asp-validation-for="UnitNumber" class="text-danger"></span>
+    </div>
 
-                // Clear validation errors when hiding sections
-                $('input, select', '#residentFields, #officerFields').removeClass('is-invalid');
-                $('.text-danger', '#residentFields, #officerFields').empty();
-            }).trigger('change');
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" class="form-control" placeholder="Enter Password (min. 6 characters)" />
+        <span class="text-danger">
+            @if (ViewData.ModelState.ContainsKey("") && ViewData.ModelState[""].Errors.Any())
+            {
+                @ViewData.ModelState[""].Errors[0].ErrorMessage
+            }
+        </span>
+    </div>
 
-            // Client-side validation enhancement
-            $('#userForm').on('submit', function() {
-                const role = $('#roleSelect').val();
-                let isValid = true;
-
-                // Validate required fields based on role
-                if (role === 'Resident') {
-                    if (!$('#Name').val()) {
-                        $('#Name').addClass('is-invalid');
-                        isValid = false;
-                    }
-                    if (!$('#Dni').val()) {
-                        $('#Dni').addClass('is-invalid');
-                        isValid = false;
-                    }
-                } else if (role === 'SecurityOfficer') {
-                    if (!$('#BadgeNumber').val()) {
-                        $('#BadgeNumber').addClass('is-invalid');
-                        isValid = false;
-                    }
-                }
-
-                return isValid;
-            });
-        });
-    </script>
+    <button type="submit" class="btn btn-primary">
+        <i class="fa fa-save"></i> Save User
+    </button>
 }

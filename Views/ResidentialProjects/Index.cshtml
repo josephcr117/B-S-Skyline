@@ -1,27 +1,30 @@
 ﻿@model List<B_S_Skyline.Models.ResidentialProject>
 @if (TempData["SuccessMessage"] != null)
 {
-    <div class="alert alert-success">
-        @TempData["SuccessMessage"]
-    </div>
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
 }
 @if (TempData["ErrorMessage"] != null)
 {
-    <div class="alert alert-danger">
-        @TempData["ErrorMessage"]
-    </div>
+    <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
 }
 
 <h2>All Residential Projects</h2>
 
-<table class="table">
+<form method="get" asp-action="Index">
+    <div class="form-group">
+        <input type="text" name="search" class="form-control" placeholder="Search by name or code" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+<table class="table table-hover table-bordered">
     <thead>
         <tr>
             <th>Code</th>
             <th>Name</th>
             <th>Address</th>
             <th>Office Phone</th>
-            <th>Houses</th>
+            <th>Total Houses</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -33,15 +36,24 @@
                 <td>@project.Name</td>
                 <td>@project.Address</td>
                 <td>@project.OfficePhone</td>
-                <td>@string.Join(", ", project.HouseNumbers)</td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@project.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@project.Id">Details</a>
-                    <a asp-action="Delete" asp-route-id="@project.Id" class="text-danger">Delete</a>
+                    <span data-toggle="tooltip" title="@string.Join(", ", project.HouseNumbers)">
+                        @project.HouseNumbers.Count() houses
+                    </span>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@project.Id" class="btn btn-sm btn-warning">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@project.Id" class="btn btn-sm btn-danger">
+                        <i class="fas fa-trash-alt"></i> Delete
+                    </a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
 
-<a asp-action="Create" class="btn btn-primary">Add New Project</a>
+<a asp-action="Create" class="btn btn-primary">
+    <i class="fas fa-plus"></i> Add New Project
+</a>

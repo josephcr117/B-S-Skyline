@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("B&S Skyline")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+65755919ddcc14abffebef59bdd2417755bbdee1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9995aa32e95c38199ee87b24f61632a6088aec26")]
 [assembly: System.Reflection.AssemblyProductAttribute("B&S Skyline")]
 [assembly: System.Reflection.AssemblyTitleAttribute("B&S Skyline")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

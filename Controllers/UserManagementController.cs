@@ -68,6 +68,36 @@ namespace B_S_Skyline.Controllers
                     return View(user);
                 }
 
+                var project = await _firebase
+                    .Child("projects")
+                    .Child(user.ProjectId)
+                    .OnceSingleAsync<ResidentialProject>();
+
+                if (project == null)
+                {
+                    ModelState.AddModelError("ProjectId", "Project not found");
+                    await LoadProjectsViewBag();
+                    return View(user);
+                }
+
+                var existingUser = await _firebase
+                .Child("Users")
+                .OnceAsync<UserModel>();
+
+                if (existingUser.Any(u => u.Object.Dni == user.Dni))
+                {
+                    ModelState.AddModelError("Dni", "ID Number is already in use");
+                    await LoadProjectsViewBag();
+                    return View(user);
+                }
+
+                if (existingUser.Any(u => u.Object.Email == user.Email))
+                {
+                    ModelState.AddModelError("Email", "Email already in use");
+                    await LoadProjectsViewBag();
+                    return View(user);
+                }
+
                 FirebaseAdminHelper.Initialize();
 
                 UserCredential authUser;
@@ -96,12 +126,7 @@ namespace B_S_Skyline.Controllers
                 }
                 catch (FirebaseAuthException ex)
                 {
-                    TempData["Error"] = ex.Reason switch
-                    {
-                        AuthErrorReason.EmailExists => "Email already in use",
-                        AuthErrorReason.InvalidEmailAddress => "Invalid email format",
-                        _ => $"Authentication error: {ex.Message}"
-                    };
+                    ModelState.AddModelError("", $"An unexpected error occurred during authorization.");
                     await LoadProjectsViewBag();
                     return View(user);
                 }
@@ -121,11 +146,11 @@ namespace B_S_Skyline.Controllers
                 var user = await _firebase.Child("Users").Child(id).OnceSingleAsync<UserModel>();
                 if (user == null || user.Role != "Resident")
                 {
-                    TempData["Error"] = "Resident not found.";
+                    TempData["Error"] = "Resident not found";
                     return RedirectToAction("Index");
                 }
                 await LoadProjectsViewBag();
-                ViewBag.PhoneNumbers = string.Join(", ", user.PhoneNumbers);
+                ViewBag.PhoneNumbers = string.Join(", ", user.PhoneNumbers ?? new List<string>());
                 return View(user);
             }
             catch (Exception ex)
@@ -135,49 +160,65 @@ namespace B_S_Skyline.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> EditResident(UserModel user, string phoneNumbersInput, string id)
+        public async Task<IActionResult> EditResident(string id, UserModel user, string phoneNumbersInput)
         {
             try
             {
+                ModelState.Clear();
+
+                if (string.IsNullOrEmpty(user.Name))
+                    ModelState.AddModelError("Name", "Name is required");
+
                 if (string.IsNullOrEmpty(user.Dni))
-                {
-                    ModelState.AddModelError("Dni", "DNI is required for residents.");
-                }
+                    ModelState.AddModelError("Dni", "ID is required");
+
+                if (string.IsNullOrEmpty(user.ProjectId))
+                    ModelState.AddModelError("ProjectId", "Project is required");
+
+                if (string.IsNullOrEmpty(user.UnitNumber))
+                    ModelState.AddModelError("UnitNumber", "Unit number is required");
+
                 if (!ModelState.IsValid)
                 {
                     await LoadProjectsViewBag();
-                    ViewBag.PhoneNumbers = phoneNumbersInput;
+                    ViewBag.PhoneNumbers = phoneNumbersInput ?? "";
                     return View(user);
                 }
 
-                user.PhoneNumbers = phoneNumbersInput?
+                var phoneNumbers = phoneNumbersInput?
                     .Split(',', StringSplitOptions.RemoveEmptyEntries)
                     .Select(p => p.Trim())
                     .ToList() ?? new List<string>();
 
+                var updates = new
+                {
+                    Name = user.Name,
+                    Dni = user.Dni,
+                    ProjectId = user.ProjectId,
+                    UnitNumber = user.UnitNumber,
+                    PhoneNumbers = phoneNumbers
+                };
+
                 await _firebase
                     .Child("Users")
                     .Child(id)
-                    .PatchAsync(new
-                    {
-                        user.Name,
-                        user.Dni,
-                        user.ProjectId,
-                        user.UnitNumber,
-                        user.PhoneNumbers,
-                        user.Vehicles
-                    });
+                    .PatchAsync(updates);
 
-                TempData["Success"] = "Resident updated successfully.";
+                TempData["Success"] = "Resident updated successfully!";
                 return RedirectToAction("Index");
+            }
+            catch (FirebaseException ex)
+            {
+                TempData["Error"] = $"Database error: {ex.Message}";
             }
             catch (Exception ex)
             {
-                TempData["Error"] = $"Failed to update resident: {ex.Message}";
-                await LoadProjectsViewBag();
-                ViewBag.phoneNumbers = phoneNumbersInput;
-                return View(user);
+                TempData["Error"] = $"Unexpected error: {ex.Message}";
             }
+
+            await LoadProjectsViewBag();
+            ViewBag.PhoneNumbers = phoneNumbersInput ?? "";
+            return View(user);
         }
         [HttpGet]
         public async Task<IActionResult> EditOfficer(string id)
@@ -205,6 +246,12 @@ namespace B_S_Skyline.Controllers
         {
             try
             {
+                ModelState.Clear();
+                if (string.IsNullOrEmpty(user.Name))
+                {
+                    ModelState.AddModelError("Name", "Name is required");
+                }
+
                 if (string.IsNullOrEmpty(user.BadgeNumber))
                 {
                     ModelState.AddModelError("BadgeNumber", "Badge number is required");
@@ -238,15 +285,18 @@ namespace B_S_Skyline.Controllers
         {
             try
             {
-                await _firebase.Child("Users").Child(uid).PatchAsync(new { IsActive = isActive });
-                await SetCustomClaims(uid, null, isActive);
+                var user = await _firebase.Child("Users").Child(uid).OnceSingleAsync<UserModel>();
+                bool newStatus = !user.IsActive;
+                FirebaseAdminHelper.Initialize();
 
-                TempData["Success"] = $"User {(isActive ? "activated" : "deactivated")}";
+                await _firebase.Child("Users").Child(uid).PatchAsync(new { IsActive = newStatus });
+                await SetCustomClaims(uid, null, newStatus);
+
+                TempData["Success"] = $"User {(newStatus ? "activated" : "deactivated")}";
                 return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            catch
             {
-                TempData["Error"] = $"Error updating status: {ex.Message}";
                 return RedirectToAction("Index");
             }
         }

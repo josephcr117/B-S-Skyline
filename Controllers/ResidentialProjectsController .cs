@@ -24,15 +24,44 @@ namespace B_S_Skyline.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ResidentialProject project, string houseNumbersInput)
         {
-            project.HouseNumbers = houseNumbersInput.Split(',')
-                .Select(x => x.Trim())
-                .ToList();
+            try
+            {
+                var parsedNumbers = houseNumbersInput.Split(',')
+                    .Select(range =>
+                    {
+                        var parts = range.Split('-').Select(p => p.Trim()).ToList();
+                        if (parts.Count == 2 && int.TryParse(parts[0], out int start) && int.TryParse(parts[1], out int end))
+                        {
+                            return Enumerable.Range(start, end - start + 1).Select(n => n.ToString()).ToList();
+                        }
+                        if (int.TryParse(range.Trim(), out int singleNumber))
+                        {
+                            return new List<string> { singleNumber.ToString() };
+                        }
+                        return null;
+                    })
+                    .Where(x => x != null)
+                    .SelectMany(x => x) 
+                    .ToList();
 
-            var client = FirebaseService.GetFirebaseClient();
-            await client.Child("projects").PostAsync(project);
-            return RedirectToAction("Index", "Home");
+                if (!parsedNumbers.Any())
+                {
+                    ModelState.AddModelError("HouseNumbers", "Invalid house numbers format");
+                    return View(project);
+                }
+
+                project.HouseNumbers = parsedNumbers;
+
+                await _firebase.Child("projects").PostAsync(project);
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = $"Error creating project: {ex.Message}";
+                return View(project);
+            }
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string search)
         {
             var client = FirebaseService.GetFirebaseClient();
             var projects = (await client
@@ -46,7 +75,17 @@ namespace B_S_Skyline.Controllers
                     Address = item.Object.Address,
                     OfficePhone = item.Object.OfficePhone,
                     HouseNumbers = item.Object.HouseNumbers
-                }).ToList();
+                })
+                .ToList();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                projects = projects.Where(p =>
+                    p.Name.Contains(search, StringComparison.OrdinalIgnoreCase) ||
+                    p.Code.Contains(search, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
+
             return View(projects);
         }
         public async Task<IActionResult> Edit(string id)
@@ -64,17 +103,45 @@ namespace B_S_Skyline.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(string id, ResidentialProject project, string houseNumbersInput)
         {
-            project.HouseNumbers = houseNumbersInput.Split(',')
-                                  .Select(x => x.Trim())
-                                  .ToList();
+            try
+            {
+                var parsedNumbers = houseNumbersInput.Split(',')
+                    .Select(range =>
+                    {
+                        var parts = range.Split('-').Select(p => p.Trim()).ToList();
+                        if (parts.Count == 2 && int.TryParse(parts[0], out int start) && int.TryParse(parts[1], out int end))
+                        {
+                            return Enumerable.Range(start, end - start + 1).Select(n => n.ToString()).ToList();
+                        }
+                        if (int.TryParse(range.Trim(), out int singleNumber))
+                        {
+                            return new List<string> { singleNumber.ToString() };
+                        }
+                        return null;
+                    })
+                    .Where(x => x != null) 
+                    .SelectMany(x => x) 
+                    .ToList();
 
-            var client = FirebaseService.GetFirebaseClient();
-            await client
-                .Child("projects")
-                .Child(id)
-                .PutAsync(project);
+                if (!parsedNumbers.Any())
+                {
+                    ModelState.AddModelError("HouseNumbers", "Invalid house numbers format. Please use numbers or ranges.");
+                    return View(project);
+                }
 
-            return RedirectToAction(nameof(Index));
+                project.HouseNumbers = parsedNumbers;
+
+                var client = FirebaseService.GetFirebaseClient();
+                await client.Child("projects").Child(id).PutAsync(project);
+
+                TempData["SuccessMessage"] = "Project updated successfully!";
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error updating project: {ex.Message}";
+                return View(project);
+            }
         }
 
         [HttpGet]
