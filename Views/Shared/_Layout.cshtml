@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/B_S_Skyline.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         .navbar-nav .btn-link {
             padding: 0.5rem 1rem;
@@ -36,7 +37,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        @if (Context.Session.GetString("UserRole") == "Owner")
+                        @* @if (Context.Session.GetString("UserRole") == "Owner")
                         {
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="ResidentialProjects" asp-action="Index">Projects</a>
@@ -44,19 +45,19 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="UserManagement" asp-action="Index">Users</a>
                             </li>
-                        }
+                        } 
                         @if (Context.Session.GetString("UserRole") == "Resident")
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-controller="Visits" asp-action="Create">New Visit</a>
+                                <a class="nav-link" asp-controller="Settings" asp-action="Settings">Settings</a>
                             </li>
                         }
-                        @if (Context.Session.GetString("UserRole") == "SecurityOfficer")
+                        @* @if (Context.Session.GetString("UserRole") == "SecurityOfficer")
                         {
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Security" asp-action="Dashboard">Security Dashboard</a>
                             </li>
-                        }
+                        } *@
                     </ul>
                     <ul class="navbar-nav">
                         @if (Context.Session.GetString("UserId") != null)

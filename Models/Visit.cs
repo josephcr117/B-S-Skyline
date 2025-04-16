@@ -21,20 +21,28 @@ namespace B_S_Skyline.Models
         public string LicensePlate { get; set; }
         [Display(Name = "Is Delivery")]
         public bool IsDelivery { get; set; }
-        public DeliveryServiceType DeliveryService { get; set; }
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public DeliveryServiceType? DeliveryService { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public enum DeliveryServiceType
         {
             [Display(Name = "Uber Eats")]
-            UberEats = 0,
+            None = 0,
             [Display(Name = "Rappi")]
-            Rappi = 1,
+            UberEats= 1,
             [Display(Name = "Didi")]
-            Didi = 2,
+            Rappi = 2,
             [Display(Name = "PedidosYa")]
-            PedidosYa = 3,
+            Didi = 3,
             [Display(Name = "Other")]
-            Other = 4
+            PedidosYa = 4,
+            Other = 5
+        }
+        public enum VisitType
+        {
+            Personal = 0,
+            Delivery = 1,
+            Other = 2
         }
         public string DeliveryServiceDisplayName => DeliveryService switch
         {

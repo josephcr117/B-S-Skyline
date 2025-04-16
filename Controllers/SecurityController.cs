@@ -66,23 +66,23 @@ namespace B_S_Skyline.Controllers
 
             return Json(new { success = true });
         }
-        public async Task<IActionResult> CheckResidentVehicle(string licensePlate)
-        {
+        //public async Task<IActionResult> CheckResidentVehicle(string licensePlate)
+        //{
 
-            var cleanPlate = licensePlate?.Trim().Replace("-", "").Replace(" ", "").ToUpper();
+        //    var cleanPlate = licensePlate?.Trim().Replace("-", "").Replace(" ", "").ToUpper();
 
-            var residents = (await _firebase.Child("Users").OnceAsync<UserModel>())
-                .Where(r => r.Object.Vehicles?.Any(v =>
-                v.Split('|')[0]
-                .Replace("-", "").Replace(" ", "").ToUpper() == cleanPlate) ?? false)
-                .Select(r => new
-                {
-                    r.Object.Name,
-                    r.Object.UnitNumber,
-                    VehicleInfo = r.Object.Vehicles?.FirstOrDefault(v =>
-                    v.StartsWith(licensePlate, StringComparison.OrdinalIgnoreCase))
-                });
-            return Json(residents);
-        }
+        //    var residents = (await _firebase.Child("Users").OnceAsync<UserModel>())
+        //        .Where(r => r.Object.Vehicles?.Any(v =>
+        //        v.Split('|')[0]
+        //        .Replace("-", "").Replace(" ", "").ToUpper() == cleanPlate) ?? false)
+        //        .Select(r => new
+        //        {
+        //            r.Object.Name,
+        //            r.Object.HouseNumber,
+        //            VehicleInfo = r.Object.Vehicles?.FirstOrDefault(v =>
+        //            v.StartsWith(licensePlate, StringComparison.OrdinalIgnoreCase))
+        //        });
+        //    return Json(residents);
+        //}
     }
 }

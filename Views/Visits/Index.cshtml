@@ -54,7 +54,7 @@
                         <input type="hidden" name="id" value="@visit.Id" />
                         <button type="submit" class="btn btn-sm @(visit.IsFavorite ? "btn-success" : "btn-outline-secondary")"
                                 title="@(visit.IsFavorite ? "Remove from favorites" : "Add to favorites")">
-                            <i class="fas @(visit.IsFavorite ? "fa-star" : "fa-star-o")"></i>
+                            <i class="fa @(visit.IsFavorite ? "fa-star-o" : "fa-star")"></i>
                         </button>
                     </form>
                 </td>
@@ -66,4 +66,7 @@
 <a asp-action="Create" class="btn btn-primary">New Visit</a>
 <a asp-action="Favorites" class="btn btn-info">
     <i class="fas fa-star"></i> View Favorites
+</a>
+<a asp-action="Vehicles" class="btn btn-success">
+    <i class="fas fa-car"></i> View Registered Vehicles
 </a>

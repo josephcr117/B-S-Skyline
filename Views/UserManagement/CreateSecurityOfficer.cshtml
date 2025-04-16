@@ -1,0 +1,39 @@
+﻿@model B_S_Skyline.Models.UserModel
+
+<h2>Create Security Officer</h2>
+
+@using (Html.BeginForm("CreateSecurityOfficer", "UserManagement", FormMethod.Post))
+{
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" placeholder="Enter Full Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" type="email" class="form-control" placeholder="Enter Email Address" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="BadgeNumber">Badge Number</label>
+        <input asp-for="BadgeNumber" class="form-control" placeholder="Enter Badge Number" />
+        <span asp-validation-for="BadgeNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" class="form-control" placeholder="Enter Password (min. 6 characters)" />
+        <span class="text-danger">
+            @if (ViewData.ModelState.ContainsKey("") && ViewData.ModelState[""].Errors.Any())
+            {
+                @ViewData.ModelState[""].Errors[0].ErrorMessage
+            }
+        </span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        <i class="fa fa-save"></i> Save Security Officer
+    </button>
+}

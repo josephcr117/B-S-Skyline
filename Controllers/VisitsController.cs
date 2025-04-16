@@ -5,6 +5,7 @@ using Firebase.Database;
 using Firebase.Database.Query;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics;
 
 namespace B_S_Skyline.Controllers
 {
@@ -59,7 +60,7 @@ namespace B_S_Skyline.Controllers
         {
             try
             {
-                visit.IsDelivery = visit.DeliveryService != Visit.DeliveryServiceType.Other && visit.DeliveryService != default(Visit.DeliveryServiceType);
+                visit.IsDelivery = visit.DeliveryService.HasValue && visit.DeliveryService != Visit.DeliveryServiceType.None;
 
                 visit.EntryTime = DateTime.Now;
                 visit.ResidentId = _currentUserId;
@@ -92,7 +93,7 @@ namespace B_S_Skyline.Controllers
         {
             try
             {
-                visit.IsDelivery = visit.DeliveryService != Visit.DeliveryServiceType.Other && visit.DeliveryService != default(Visit.DeliveryServiceType);
+                visit.IsDelivery = visit.DeliveryService.HasValue && visit.DeliveryService != Visit.DeliveryServiceType.None;
 
                 await _firebase
                     .Child("visits")
@@ -278,6 +279,88 @@ namespace B_S_Skyline.Controllers
                 TempData["Error"] = $"Error removing favorite: {ex.Message}";
                 return RedirectToAction(nameof(Favorites));
             }
+        }
+        [HttpGet]
+        public async Task<IActionResult> Vehicles()
+        {
+            try
+            {
+                var vehicles = await _firebase
+                    .Child("Users")
+                    .Child(_currentUserId)
+                    .Child("Vehicles")
+                    .OnceAsync<VehicleModel>();
+
+                return View(vehicles.ToDictionary(v => v.Key, v => v.Object));
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = $"Error loading vehicles: {ex.Message}";
+                return View(new Dictionary<string, VehicleModel>());
+            }
+        }
+        [HttpGet]
+        public IActionResult AddVehicle()
+        {
+            return View(new VehicleModel());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddVehicle(VehicleModel vehicle)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(vehicle.LicensePlate))
+                {
+                    TempData["ErrorMessage"] = "License plate is required.";
+                    return View(vehicle);
+                }
+                var existingVehicles = await _firebase
+                    .Child("Users")
+                    .Child(_currentUserId)
+                    .Child("Vehicles")
+                    .OnceAsync<VehicleModel>();
+                
+                if (existingVehicles.Any(v => v.Object.LicensePlate == vehicle.LicensePlate))
+                {
+                    TempData["ErrorMessage"] = "Vehicle with this license plate already exists.";
+                    return View(vehicle);
+                }
+                    await _firebase
+                    .Child("Users")
+                    .Child(_currentUserId)
+                    .Child("Vehicles")
+                    .PostAsync(vehicle);
+
+                TempData["SuccessMessage"] = "Vehicle registered successfully!";
+                return RedirectToAction(nameof(Vehicles));
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error registering vehicle: {ex.Message}";
+                return View(vehicle);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteVehicle(string id)
+        {
+            try
+            {
+                await _firebase
+                    .Child("Users")
+                    .Child(_currentUserId)
+                    .Child("Vehicles")
+                    .Child(id)
+                    .DeleteAsync();
+
+                TempData["SuccessMessage"] = "Vehicle deleted successfully!";
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = $"Error deleting vehicle: {ex.Message}";
+            }
+            return RedirectToAction(nameof(Vehicles));
         }
     }
 }

@@ -60,20 +60,32 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Josep/source/repos/B&S Skyline/B&S Skyline/Views/UserManagement/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlck1hbmFnZW1lbnRcQ3JlYXRlLmNzaHRtbA==
+[C:/Users/Josep/source/repos/B&S Skyline/B&S Skyline/Views/UserManagement/CreateResident.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlck1hbmFnZW1lbnRcQ3JlYXRlUmVzaWRlbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Josep/source/repos/B&S Skyline/B&S Skyline/Views/UserManagement/EditOfficer.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlck1hbmFnZW1lbnRcRWRpdE9mZmljZXIuY3NodG1s
+[C:/Users/Josep/source/repos/B&S Skyline/B&S Skyline/Views/UserManagement/CreateSecurityOfficer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlck1hbmFnZW1lbnRcQ3JlYXRlU2VjdXJpdHlPZmZpY2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Josep/source/repos/B&S Skyline/B&S Skyline/Views/UserManagement/EditResident.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlck1hbmFnZW1lbnRcRWRpdFJlc2lkZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Josep/source/repos/B&S Skyline/B&S Skyline/Views/UserManagement/EditSecurityOfficer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlck1hbmFnZW1lbnRcRWRpdFNlY3VyaXR5T2ZmaWNlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Josep/source/repos/B&S Skyline/B&S Skyline/Views/UserManagement/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlck1hbmFnZW1lbnRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Josep/source/repos/B&S Skyline/B&S Skyline/Views/UserManagement/_NotificationPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlck1hbmFnZW1lbnRcX05vdGlmaWNhdGlvblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Josep/source/repos/B&S Skyline/B&S Skyline/Views/Visits/AddVehicle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlzaXRzXEFkZFZlaGljbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Josep/source/repos/B&S Skyline/B&S Skyline/Views/Visits/Create.cshtml]
@@ -102,6 +114,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Josep/source/repos/B&S Skyline/B&S Skyline/Views/Visits/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlzaXRzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Josep/source/repos/B&S Skyline/B&S Skyline/Views/Visits/Vehicles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVmlzaXRzXFZlaGljbGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Josep/source/repos/B&S Skyline/B&S Skyline/Views/_ViewImports.cshtml]

@@ -9,5 +9,11 @@
         public string Address { get; set; }
         public string OfficePhone { get; set; }
         public List<string> HouseNumbers { get; set; } = new List<string>();
+        public UnitRange UnitRange { get; set; }
+    }
+    public class UnitRange
+    {
+        public int Min { get; set; }
+        public int Max { get; set; }
     }
 }

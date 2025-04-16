@@ -6,6 +6,7 @@ using Firebase.Database;
 using Firebase.Database.Query;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Diagnostics;
 
 namespace B_S_Skyline.Controllers
 {
@@ -26,7 +27,6 @@ namespace B_S_Skyline.Controllers
             try
             {
                 var users = (await _firebase.Child("Users").OnceAsync<UserModel>())
-
                     .Select(u => new UserModel
                     {
                         Uid = u.Key,
@@ -34,11 +34,12 @@ namespace B_S_Skyline.Controllers
                         Role = u.Object.Role,
                         Name = u.Object.Name,
                         Dni = u.Object.Dni,
-                        UnitNumber = u.Object.UnitNumber,
+                        HouseNumber = u.Object.HouseNumber,
                         ProjectId = u.Object.ProjectId,
                         BadgeNumber = u.Object.BadgeNumber,
                         IsActive = u.Object.IsActive,
-                        CreatedAt = u.Object.CreatedAt
+                        CreatedAt = u.Object.CreatedAt,
+                        Vehicles = u.Object.Vehicles ?? new Dictionary<string, VehicleModel>()
                     })
                     .OrderByDescending(u => u.CreatedAt)
                     .ToList();
@@ -51,13 +52,22 @@ namespace B_S_Skyline.Controllers
             }
         }
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> CreateResident()
         {
-            await LoadProjectsViewBag();
+            ViewBag.Projects = (await _firebase
+                .Child("projects")
+                .OnceAsync<ResidentialProject>())
+                .Select(p => new SelectListItem
+                {
+                    Value = p.Key,
+                    Text = p.Object.Name
+                }).ToList();
+
+            ViewBag.Units = new List<SelectListItem>();
             return View(new UserModel());
         }
         [HttpPost]
-        public async Task<IActionResult> Create(UserModel user, string password, string phoneNumbersInput)
+        public async Task<IActionResult> CreateResident(UserModel resident, string password, string phoneNumbersInput)
         {
             try
             {
@@ -65,77 +75,111 @@ namespace B_S_Skyline.Controllers
                 {
                     ModelState.AddModelError("", "Password must be at least 6 characters");
                     await LoadProjectsViewBag();
-                    return View(user);
+                    return View(resident);
                 }
 
-                var project = await _firebase
-                    .Child("projects")
-                    .Child(user.ProjectId)
-                    .OnceSingleAsync<ResidentialProject>();
+                var existingUsers = (await _firebase
+                    .Child("Users")
+                    .OnceAsync<UserModel>())
+                    .Where(u => u.Object.ProjectId == resident.ProjectId);
 
-                if (project == null)
+                //if (existingUsers.Any(u => u.Object.Email == resident.Email))
+                //{
+                //    ModelState.AddModelError("Email", "Email already exists in this project.");
+                //    await LoadProjectsViewBag();
+                //    return View(resident);
+                //}
+                //if (existingUsers.Any(u => u.Object.Dni == resident.Dni))
+                //{
+                //    ModelState.AddModelError("Dni", "ID already exists in this project.");
+                //    await LoadProjectsViewBag();
+                //    return View(resident);
+                //}
+                if (existingUsers.Any(u => u.Object.HouseNumber == resident.HouseNumber))
                 {
-                    ModelState.AddModelError("ProjectId", "Project not found");
+                    ModelState.AddModelError("HouseNumber", "House is already taken. Please pick another.");
                     await LoadProjectsViewBag();
-                    return View(user);
+                    return View(resident);
                 }
 
-                var existingUser = await _firebase
-                .Child("Users")
-                .OnceAsync<UserModel>();
-
-                if (existingUser.Any(u => u.Object.Dni == user.Dni))
-                {
-                    ModelState.AddModelError("Dni", "ID Number is already in use");
-                    await LoadProjectsViewBag();
-                    return View(user);
-                }
-
-                if (existingUser.Any(u => u.Object.Email == user.Email))
-                {
-                    ModelState.AddModelError("Email", "Email already in use");
-                    await LoadProjectsViewBag();
-                    return View(user);
-                }
+                resident.Role = "Resident";
+                resident.CreatedAt = DateTime.Now;
+                resident.IsActive = true;
+                resident.PhoneNumbers = phoneNumbersInput?
+                    .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                    .Select(p => p.Trim())
+                    .ToList() ?? new List<string>();
 
                 FirebaseAdminHelper.Initialize();
+                var authUser = await _auth.CreateUserWithEmailAndPasswordAsync(resident.Email, password);
+                resident.Uid = authUser.User.Uid;
 
-                UserCredential authUser;
-                try
-                {
-                    authUser = await _auth.CreateUserWithEmailAndPasswordAsync(user.Email, password);
-                    user.Uid = authUser.User.Uid;
-                    user.CreatedAt = DateTime.Now;
-                    user.IsActive = true;
+                await _firebase
+                    .Child("Users")
+                    .Child(resident.Uid)
+                    .PutAsync(resident);
 
-                    user.PhoneNumbers = phoneNumbersInput?
-                        .Split(',', StringSplitOptions.RemoveEmptyEntries)
-                        .Select(p => p.Trim())
-                        .ToList() ?? new List<string>();
+                await FirebaseAdminHelper.SetCustomUserClaimsAsync(resident.Uid, new Dictionary<string, object> { { "role", resident.Role } });
+                TempData["Success"] = "User created successfully!";
+                return RedirectToAction("Index");
 
-                    await _firebase
-                        .Child("Users")
-                        .Child(user.Uid)
-                        .PutAsync(user);
-
-                    await FirebaseAdminHelper.SetCustomUserClaimsAsync(user.Uid,
-                        new Dictionary<string, object> { { "role", user.Role } });
-
-                    TempData["Success"] = "User created successfully!";
-                    return RedirectToAction("Index");
-                }
-                catch (FirebaseAuthException ex)
-                {
-                    ModelState.AddModelError("", $"An unexpected error occurred during authorization.");
-                    await LoadProjectsViewBag();
-                    return View(user);
-                }
             }
             catch (Exception ex)
             {
                 TempData["Error"] = $"Error creating user: {ex.Message}";
                 await LoadProjectsViewBag();
-                return View(user);
+                return View(resident);
+            }
+        }
+        [HttpGet]
+        public IActionResult CreateSecurityOfficer()
+        {
+            return View(new UserModel { Role = "Security Officer" });
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateSecurityOfficer(UserModel officer, string password)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(password) || password.Length < 6)
+                {
+                    ModelState.AddModelError("", "Password must be at least 6 characters");
+                    return View(officer);
+                }
+                var existingUsers = await _firebase
+                    .Child("Users")
+                    .OnceAsync<UserModel>();
+
+                if (existingUsers.Any(u => u.Object.Email == officer.Email))
+                {
+                    ModelState.AddModelError("Email", "Email is already in use");
+                    return View(officer);
+                }
+                if (existingUsers.Any(u => u.Object.BadgeNumber == officer.BadgeNumber))
+                {
+                    ModelState.AddModelError("BadgeNumber", "Badge number already exists");
+                    return View(officer);
+                }
+                officer.Role = "SecurityOfficer";
+                officer.CreatedAt = DateTime.Now;
+                officer.IsActive = true;
+
+                FirebaseAdminHelper.Initialize();
+                var authUser = await _auth.CreateUserWithEmailAndPasswordAsync(officer.Email, password);
+                officer.Uid = authUser.User.Uid;
+
+                await _firebase
+                    .Child("Users")
+                    .Child(officer.Uid)
+                    .PutAsync(officer);
+
+                TempData["Success"] = "Security officer created successfully!";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = $"Error creating security officer: {ex.Message}";
+                return View(officer);
             }
         }
         [HttpGet]
@@ -143,7 +187,10 @@ namespace B_S_Skyline.Controllers
         {
             try
             {
-                var user = await _firebase.Child("Users").Child(id).OnceSingleAsync<UserModel>();
+                var user = await _firebase
+                    .Child("Users")
+                    .Child(id)
+                    .OnceSingleAsync<UserModel>();
                 if (user == null || user.Role != "Resident")
                 {
                     TempData["Error"] = "Resident not found";
@@ -175,8 +222,8 @@ namespace B_S_Skyline.Controllers
                 if (string.IsNullOrEmpty(user.ProjectId))
                     ModelState.AddModelError("ProjectId", "Project is required");
 
-                if (string.IsNullOrEmpty(user.UnitNumber))
-                    ModelState.AddModelError("UnitNumber", "Unit number is required");
+                if (string.IsNullOrEmpty(user.HouseNumber))
+                    ModelState.AddModelError("HouseNumber", "Unit number is required");
 
                 if (!ModelState.IsValid)
                 {
@@ -195,7 +242,7 @@ namespace B_S_Skyline.Controllers
                     Name = user.Name,
                     Dni = user.Dni,
                     ProjectId = user.ProjectId,
-                    UnitNumber = user.UnitNumber,
+                    HouseNumber = user.HouseNumber,
                     PhoneNumbers = phoneNumbers
                 };
 
@@ -221,11 +268,14 @@ namespace B_S_Skyline.Controllers
             return View(user);
         }
         [HttpGet]
-        public async Task<IActionResult> EditOfficer(string id)
+        public async Task<IActionResult> EditSecurityOfficer(string id)
         {
             try
             {
-                var user = await _firebase.Child("Users").Child(id).OnceSingleAsync<UserModel>();
+                var user = await _firebase
+                    .Child("Users")
+                    .Child(id)
+                    .OnceSingleAsync<UserModel>();
                 if (user == null || user.Role != "SecurityOfficer")
                 {
                     TempData["Error"] = "Officer not found";
@@ -242,7 +292,7 @@ namespace B_S_Skyline.Controllers
             }
         }
         [HttpPost]
-        public async Task<IActionResult> EditOfficer(string id, UserModel user)
+        public async Task<IActionResult> EditSecurityOfficer(string id, UserModel user)
         {
             try
             {
@@ -300,7 +350,28 @@ namespace B_S_Skyline.Controllers
                 return RedirectToAction("Index");
             }
         }
-
+        [HttpPost]
+        public async Task<IActionResult> Delete(string uid)
+        {
+            var user = await _firebase.Child("Users").Child(uid).OnceSingleAsync<UserModel>();
+            if (user == null)
+            {
+                TempData["Error"] = "User not found";
+                return RedirectToAction("Index");
+            }
+            try
+            {
+                await _firebase.Child("Users").Child(uid).DeleteAsync();
+                await FirebaseAdminHelper.DeleteUserAsync(uid);
+                TempData["Success"] = $"User {user.Name} (Email: {user.Email}) has been successfully deleted.";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = $"Error deleting user: {ex.Message}";
+                return RedirectToAction("Index");
+            }
+        }
         private async Task SetCustomClaims(string uid, string role = null, bool? isActive = null)
         {
             await FirebaseAdminHelper.UpdateCustomClaimsAsync(uid, claims =>
