@@ -3,9 +3,7 @@ using B_S_Skyline.Models;
 using B_S_Skyline.Services;
 using Firebase.Database;
 using Firebase.Database.Query;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Runtime.InteropServices;
 
 namespace B_S_Skyline.Controllers
 {

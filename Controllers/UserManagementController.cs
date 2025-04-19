@@ -6,7 +6,6 @@ using Firebase.Database;
 using Firebase.Database.Query;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Diagnostics;
 
 namespace B_S_Skyline.Controllers
 {

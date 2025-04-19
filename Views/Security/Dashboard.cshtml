@@ -1,87 +1,124 @@
 ﻿@using B_S_Skyline.ViewModels
 @model SecurityDashboardVM
 
-<h2>Security Dashboard</h2>
+<div class="container mt-4">
 
-<!-- Project Selection -->
-<div class="card mb-4">
-    <div class="card-header">
-        <h5>Active Project</h5>
-    </div>
-    <div class="card-body">
-        <form asp-action="SetProject" method="post">
-            <div class="form-group">
-                <select name="projectId" class="form-control"
-                        asp-items="Model.Projects.Select(p => new SelectListItem {
-                            Value = p.Id,
-                            Text = p.Name
-                        })">
-                    <option value="">-- Select Project --</option>
-                </select>
+    <!-- Active Project Section -->
+    @if (TempData["ActiveProject"] == null)
+    {
+        <div class="alert alert-warning text-center">
+            <p>Please select a project to continue.</p>
+            <a href="@Url.Action("SelectProject")" class="btn btn-primary mt-2">
+                <i class="fas fa-project-diagram me-1"></i> Select Project
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="card mb-4">
+            <div class="card-body text-center">
+                <h3 class="mb-0">
+                    Active Project:
+                    <span class="badge bg-info text-dark">@Model.ActiveProjectName</span>
+                </h3>
             </div>
-            <button type="submit" class="btn btn-primary">Set Active Project</button>
-        </form>
-    </div>
-</div>
+        </div>
 
-<!-- Visitor Search -->
-<div class="card mb-4">
-    <div class="card-header">
-        <h5>Visitor Verification</h5>
-    </div>
-    <div class="card-body">
-        <form id="searchForm">
-            <div class="form-group">
-                <input type="text" id="searchQuery" class="form-control"
-                       placeholder="Search by name, plate, or unit" />
+        <!-- Visitor Search -->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5><i class="fas fa-search me-2"></i> Visitor Verification</h5>
             </div>
-        </form>
-    </div>
-</div>
+            <div class="card-body">
+                <form id="searchForm">
+                    <input type="text" id="searchQuery" class="form-control"
+                           placeholder="Search by name, plate, or unit" />
+                </form>
+            </div>
+        </div>
 
-<!-- Active Visits -->
-<h4>Active Visits</h4>
-<table class="table" id="visitsTable">
-    <thead>
-        <tr>
-            <th>Visitor</th>
-            <th>License Plate</th>
-            <th>Entry Time</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var visit in Model.ActiveVisits)
-        {
-            <tr>
-                <td>@visit.VisitorName</td>
-                <td>@visit.LicensePlate</td>
-                <td>@visit.EntryTime.ToString("g")</td>
-                <td>
-                    <button class="btn btn-success btn-sm approve-btn"
-                            data-visit-id="@visit.Id">
-                        Approve Entry
-                    </button>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
+        <!-- Active Visits Section -->
+        <div>
+            <h4 class="mb-3"><i class="fas fa-list-alt me-2"></i> Active Visits</h4>
 
-@section Scripts {
-    <script>
-        $('#searchQuery').keyup(function() {
-            const query = $(this).val().toLowerCase();
-            $('#visitsTable tbody tr').each(function() {
-                const text = $(this).text().toLowerCase();
-                $(this).toggle(text.includes(query));
+            @if (Model.ActiveVisits != null && Model.ActiveVisits.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover" id="visitsTable">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Visitor</th>
+                                <th>License Plate</th>
+                                <th>Entry Time</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var visit in Model.ActiveVisits)
+                            {
+                                <tr>
+                                    <td>@(string.IsNullOrEmpty(visit.VisitorName) ? "Unknown" : visit.VisitorName)</td>
+                                    <td>@(string.IsNullOrEmpty(visit.LicensePlate) ? "N/A" : visit.LicensePlate)</td>
+                                    <td>@visit.EntryTime?.ToString("g")</td>
+                                    <td>
+                                        <button class="btn btn-success btn-sm approve-btn"
+                                                data-visit-id="@visit.Id">
+                                            <i class="fas fa-check"></i> Approve Entry
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info text-center">
+                    <p>No active visits found for the selected project.</p>
+                </div>
+            }
+        </div>
+    }
+
+    <!-- Scripts Section -->
+    @section Scripts {
+        <script>
+            // Live search logic
+            $('#searchQuery').keyup(function () {
+                const query = $(this).val().toLowerCase();
+                $('#visitsTable tbody tr').each(function () {
+                    const text = $(this).text().toLowerCase();
+                    $(this).toggle(text.includes(query));
+                });
             });
-        });
 
-        $('.approve-btn').click(function() {
-            const visitId = $(this).data('visit-id');
+            // Approve visit logic
+            $('.approve-btn').click(function (e) {
+                e.preventDefault();
+                const visitId = $(this).data('visit-id');
 
-            console.log("Approved visit:", visitId);
-        });
-    </script>
-}
+                if (!visitId) {
+                    alert('Invalid visit ID.');
+                    return;
+                }
+
+                $.ajax({
+                    url: '/Security/ApproveVisit',
+                    type: 'POST',
+                    data: { visitId },
+                    success: function (response) {                        if (response.success) {
+                            alert('Visit approved successfully!');
+                            $(`button[data-visit-id="${visitId}"]`).closest('tr').fadeOut();
+                        } else {
+                            alert(`Failed to approve visit: ${response.error}`);
+                        }
+                    },
+                    error: function () {
+                        alert('An error occurred while approving the visit.');
+                    }
+                });
+            });
+        </script>
+    }
+</div>

@@ -1,0 +1,22 @@
+﻿@using B_S_Skyline.ViewModels
+@model ProjectSelectionVM
+
+<h2>Select a Project</h2>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Select Active Project</h5>
+    </div>
+    <div class="card-body">
+        <form asp-action="SetProject" method="post">
+            <div class="form-group">
+                <div class="form-group">
+                    <select name="projectId" class="form-control" asp-items="Model.Projects">
+                        <option value="">-- Select Project --</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Set Active Project</button>
+        </form>
+    </div>
+</div>

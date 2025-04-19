@@ -10,6 +10,7 @@
         public string OfficePhone { get; set; }
         public List<string> HouseNumbers { get; set; } = new List<string>();
         public UnitRange UnitRange { get; set; }
+        public List <string> SecurityOfficers { get; set; }
     }
     public class UnitRange
     {

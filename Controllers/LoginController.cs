@@ -29,7 +29,7 @@ namespace B_S_Skyline.Controllers
                 {
                     "Owner" => RedirectToAction("Index", "UserManagement"),
                     "Resident" => RedirectToAction("Index", "Visits"),
-                    "SecurityOfficer" => RedirectToAction("Dashboard", "Security"),
+                    "SecurityOfficer" => RedirectToAction("SelectProject", "Security"),
                     _ => RedirectToAction("Index", "Home")
                 };
                 return redirect;
@@ -44,6 +44,7 @@ namespace B_S_Skyline.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
+            TempData.Clear();
             return RedirectToAction("Index", "Home");
         }
     }

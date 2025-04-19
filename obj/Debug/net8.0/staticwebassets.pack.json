@@ -13,8 +13,8 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
-      "Id": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\images\\brian.jpg",
-      "PackagePath": "staticwebassets\\images\\brian.jpg"
+      "Id": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\images\\default.png",
+      "PackagePath": "staticwebassets\\images\\default.png"
     },
     {
       "Id": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\js\\site.js",

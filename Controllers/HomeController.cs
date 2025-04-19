@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using B_S_Skyline.Models;
 using B_S_Skyline.Services;
-using B_S_Skyline.ViewModels;
 using Firebase.Auth;
 using Firebase.Auth.Providers;
 using Microsoft.AspNetCore.Mvc;

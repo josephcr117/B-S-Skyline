@@ -60,20 +60,34 @@ namespace B_S_Skyline.Controllers
         {
             try
             {
-                visit.IsDelivery = visit.DeliveryService.HasValue && visit.DeliveryService != Visit.DeliveryServiceType.None;
+                // Step 1: Retrieve the resident's ProjectId from the Users table
+                var residentSnapshot = await _firebase.Child("Users").Child(_currentUserId).OnceSingleAsync<UserModel>();
+                if (residentSnapshot == null || string.IsNullOrEmpty(residentSnapshot.ProjectId))
+                {
+                    TempData["ErrorMessage"] = "You are not assigned to any project. Please contact support.";
+                    return View(visit); // Return the view with an error
+                }
 
+                // Step 2: Attach the ProjectId to the visit
+                visit.ProjectId = residentSnapshot.ProjectId;
+
+                // Step 3: Preserve the existing functionality
+                visit.IsDelivery = visit.DeliveryService.HasValue && visit.DeliveryService != Visit.DeliveryServiceType.None;
                 visit.EntryTime = DateTime.Now;
                 visit.ResidentId = _currentUserId;
 
+                // Step 4: Save the visit to the Visits table in Firebase
                 await _firebase.Child("visits").PostAsync(visit);
 
+                // Step 5: Return success message and redirect to the Index page
                 TempData["SuccessMessage"] = "Visit created successfully!";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
+                // Step 6: Handle any errors and display an error message
                 TempData["ErrorMessage"] = $"An error occurred while creating the visit: {ex.Message}";
-                return View(visit);
+                return View(visit); // Return the view with the error
             }
         }
         [HttpGet]

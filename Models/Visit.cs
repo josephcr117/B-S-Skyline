@@ -6,7 +6,7 @@ namespace B_S_Skyline.Models
     public class Visit
     {
         public string Id { get; set; }
-        public DateTime EntryTime { get; set; } = DateTime.Now;
+        public DateTime? EntryTime { get; set; } = DateTime.Now;
         public DateTime? ExitTime { get; set; }
         public bool IsFavorite { get; set; }
         [Required]
@@ -19,6 +19,8 @@ namespace B_S_Skyline.Models
         public string VisitorDni { get; set; }
         [Display(Name = "License Plate")]
         public string LicensePlate { get; set; }
+        public string ProjectId { get; set; }
+        public bool ApprovedBySecurity { get; set; }
         [Display(Name = "Is Delivery")]
         public bool IsDelivery { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter))]

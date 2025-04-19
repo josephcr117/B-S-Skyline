@@ -36,17 +36,17 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Jtxf9L\u002B5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"5430"},{"Name":"Content-Type","Value":"image/x-icon"},{"Name":"ETag","Value":"\u0022Jtxf9L\u002B5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM=\u0022"},{"Name":"Last-Modified","Value":"Sun, 30 Mar 2025 15:20:55 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/B&amp;S Skyline/images/brian.jpg">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\brian.jpg'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/B&amp;S Skyline/images/default.5uaxy5su4h.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\default.png'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-V6F/Y1\u002BWh4vOOD8IS84usok\u002BX/ELPyxVTRDTC9iMvPQ="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"104632"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022V6F/Y1\u002BWh4vOOD8IS84usok\u002BX/ELPyxVTRDTC9iMvPQ=\u0022"},{"Name":"Last-Modified","Value":"Thu, 03 Apr 2025 00:13:33 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"5uaxy5su4h"},{"Name":"integrity","Value":"sha256-43SCTIEhTqDfN3xB3AHCOCw\u002B3jx1H94e\u002Bx8e/7Vt4I4="},{"Name":"label","Value":"_content/B\u0026S Skyline/images/default.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"43827"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u002243SCTIEhTqDfN3xB3AHCOCw\u002B3jx1H94e\u002Bx8e/7Vt4I4=\u0022"},{"Name":"Last-Modified","Value":"Wed, 16 Apr 2025 21:13:09 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/B&amp;S Skyline/images/brian.trwz6icn1k.jpg">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\brian.jpg'))</AssetFile>
+    <StaticWebAssetEndpoint Include="_content/B&amp;S Skyline/images/default.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\default.png'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"trwz6icn1k"},{"Name":"integrity","Value":"sha256-V6F/Y1\u002BWh4vOOD8IS84usok\u002BX/ELPyxVTRDTC9iMvPQ="},{"Name":"label","Value":"_content/B\u0026S Skyline/images/brian.jpg"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"104632"},{"Name":"Content-Type","Value":"image/jpeg"},{"Name":"ETag","Value":"\u0022V6F/Y1\u002BWh4vOOD8IS84usok\u002BX/ELPyxVTRDTC9iMvPQ=\u0022"},{"Name":"Last-Modified","Value":"Thu, 03 Apr 2025 00:13:33 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-43SCTIEhTqDfN3xB3AHCOCw\u002B3jx1H94e\u002Bx8e/7Vt4I4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"43827"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u002243SCTIEhTqDfN3xB3AHCOCw\u002B3jx1H94e\u002Bx8e/7Vt4I4=\u0022"},{"Name":"Last-Modified","Value":"Wed, 16 Apr 2025 21:13:09 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/B&amp;S Skyline/js/site.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))</AssetFile>
