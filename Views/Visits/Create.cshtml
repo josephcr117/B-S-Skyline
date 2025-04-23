@@ -1,38 +1,49 @@
 ﻿@model Visit
 
-<h2>Register New Visit</h2>
+<h2 class="mb-3">Register New Visit</h2>
 
-<form asp-action="Create">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
-    <div class="form-group">
-        <label asp-for="VisitorName" class="control-label"></label>
-        <input asp-for="VisitorName" class="form-control" />
-        <span asp-validation-for="VisitorName" class="text-danger"></span>
-    </div>
+    <!-- Visitor Information -->
+    <fieldset class="border p-3 mb-3">
+        <legend class="w-auto px-2">Visitor Information</legend>
+        <div class="form-group">
+            <label asp-for="VisitorName" class="control-label">Visitor Name</label>
+            <input asp-for="VisitorName" class="form-control" placeholder="Enter visitor's name" />
+            <span asp-validation-for="VisitorName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="LicensePlate" class="control-label">License Plate</label>
+            <input asp-for="LicensePlate" class="form-control" placeholder="Enter license plate" />
+            <span asp-validation-for="LicensePlate" class="text-danger"></span>
+        </div>
+        <div class="form-check">
+            <input asp-for="IsDelivery" type="checkbox" class="form-check-input" id="IsDelivery" />
+            <label asp-for="IsDelivery" class="form-check-label">Is this a delivery?</label>
+        </div>
+        <div class="form-check">
+            <input asp-for="WantsEasyPass" type="checkbox" class="form-check-input" id="WantsEasyPass" />
+            <label asp-for="WantsEasyPass" class="form-check-label">Request EasyPass (QR Code)</label>
+        </div>
+    </fieldset>
 
-    <div class="form-group">
-        <label asp-for="LicensePlate" class="control-label"></label>
-        <input asp-for="LicensePlate" class="form-control" />
-        <span asp-validation-for="LicensePlate" class="text-danger"></span>
-    </div>
+    <!-- Delivery Information -->
+    <fieldset class="border p-3 mb-3" id="deliverySection" style="display:none;">
+        <legend class="w-auto px-2">Delivery Information</legend>
+        <div class="form-group">
+            <label asp-for="DeliveryService" class="control-label">Delivery Service</label>
+            <select asp-for="DeliveryService" class="form-control">
+                @foreach (var service in Enum.GetValues(typeof(B_S_Skyline.Models.Visit.DeliveryServiceType)))
+                {
+                    <option value="@service">@service.ToString()</option>
+                }
+            </select>
+            <span asp-validation-for="DeliveryService" class="text-danger"></span>
+        </div>
+    </fieldset>
 
-    <div class="form-check mb-3">
-        <input type="checkbox" class="form-check-input" id="isDeliveryCheck" />
-        <label class="form-check-label" for="isDeliveryCheck">Is this a delivery?</label>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="DeliveryService" class="control-label"></label>
-        <select asp-for="DeliveryService" class="form-control">
-            @foreach (var service in Enum.GetValues(typeof(B_S_Skyline.Models.Visit.DeliveryServiceType)))
-            {
-                <option value="@service">@service.ToString()</option>
-            }
-        </select>
-        <span asp-validation-for="DeliveryService" class="text-danger"></span>
-    </div>
-
+    <!-- Actions -->
     <div class="form-group">
         <input type="submit" value="Register Visit" class="btn btn-primary" />
     </div>
@@ -41,18 +52,17 @@
 @section Scripts {
     <script>
         $(document).ready(function() {
-            $('#isDeliveryCheck').change(function() {
-                const isChecked = this.checked;
-                $('#deliveryServiceGroup').toggle(isChecked);
-
+            $('#IsDelivery').change(function() {
+                const isChecked = $(this).is(':checked');
+                $('#deliverySection').toggle(isChecked);
                 if (!isChecked) {
-                    $('#DeliveryService').val('');
+                    $('#DeliveryService').val(''); // Reset delivery service selection
                 }
             });
 
-            if ($('#DeliveryService').val()) {
-                $('#isDeliveryCheck').prop('checked', true);
-                $('#deliveryServiceGroup').show();
+            // Initialize visibility on page load
+            if ($('#IsDelivery').is(':checked')) {
+                $('#deliverySection').show();
             }
         });
     </script>

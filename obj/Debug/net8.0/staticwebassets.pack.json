@@ -249,6 +249,26 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
+      "Id": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\6kWf5hLD0HTzFZt1QNrDjIlyUIM2.png",
+      "PackagePath": "staticwebassets\\qr\\6kWf5hLD0HTzFZt1QNrDjIlyUIM2.png"
+    },
+    {
+      "Id": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\8442cc5d-4741-4c74-9a8d-feca684d6985.png",
+      "PackagePath": "staticwebassets\\qr\\8442cc5d-4741-4c74-9a8d-feca684d6985.png"
+    },
+    {
+      "Id": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\CDFTTkFbp2YTlZygDLyQZp27c5w2.png",
+      "PackagePath": "staticwebassets\\qr\\CDFTTkFbp2YTlZygDLyQZp27c5w2.png"
+    },
+    {
+      "Id": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\HqNJITiQMhacf3TBMVxs4ZjB7H52.png",
+      "PackagePath": "staticwebassets\\qr\\HqNJITiQMhacf3TBMVxs4ZjB7H52.png"
+    },
+    {
+      "Id": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\YwjRD9YyHkNDJkZkz3Jj8SKo7st1.png",
+      "PackagePath": "staticwebassets\\qr\\YwjRD9YyHkNDJkZkz3Jj8SKo7st1.png"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.B&S Skyline.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },

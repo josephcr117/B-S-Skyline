@@ -50,5 +50,23 @@ namespace B_S_Skyline.Services
                 return null;
             }
         }
+        public static async Task ChangePasswordAsync(string currentPassword, string newPassword, string userEmail)
+        {
+            try
+            {
+                var auth = AuthClient;
+                var signInResult = await auth.SignInWithEmailAndPasswordAsync(userEmail, currentPassword);
+
+                await signInResult.User.ChangePasswordAsync(newPassword);
+            }
+            catch (FirebaseAuthException ex)
+            {
+                throw new Exception($"Failed to change password: {ex.Reason}");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error changing password: {ex.Message}");
+            }
+        }
     }
 }

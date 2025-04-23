@@ -1,4 +1,5 @@
 ﻿using B_S_Skyline.Filters;
+using B_S_Skyline.Misc;
 using B_S_Skyline.Models;
 using B_S_Skyline.Services;
 using Firebase.Auth;
@@ -6,6 +7,7 @@ using Firebase.Database;
 using Firebase.Database.Query;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using QRCoder;
 
 namespace B_S_Skyline.Controllers
 {
@@ -119,7 +121,20 @@ namespace B_S_Skyline.Controllers
                     .PutAsync(resident);
 
                 await FirebaseAdminHelper.SetCustomUserClaimsAsync(resident.Uid, new Dictionary<string, object> { { "role", resident.Role } });
-                TempData["Success"] = "User created successfully!";
+
+                string qrCodePath = QRHelper.GenerateQRCode(resident.Uid);
+
+                await AppHelper.SendRegistrationEmail(
+                    resident.Email,
+                    resident.Name,
+                    password,
+                    qrCodePath,
+                    resident.Role,
+                    resident.ProjectId,
+                    resident.HouseNumber
+                );
+
+                TempData["Success"] = $"Resident {resident.Name} ({resident.Email}) created successfully!";
                 return RedirectToAction("Index");
 
             }

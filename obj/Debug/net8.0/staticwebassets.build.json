@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "POdoytVPiUS+nH4sCQSxBVUyGHiazZJ3YF7vuQ7Ti4U=",
+  "Hash": "f8koezDO9UwxWsy9zo7L8tN1VYnU3ZdnFt19MniKtnE=",
   "Source": "B&S Skyline",
   "BasePath": "_content/B&S Skyline",
   "Mode": "Default",
@@ -1338,6 +1338,111 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\6kWf5hLD0HTzFZt1QNrDjIlyUIM2.png",
+      "SourceId": "B&S Skyline",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\",
+      "BasePath": "_content/B&S Skyline",
+      "RelativePath": "qr/6kWf5hLD0HTzFZt1QNrDjIlyUIM2#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "rh3nlwowzc",
+      "Integrity": "b6ZzKAy3UZwtpclk0hrI2jAIvHYbfLFTTHNDAer1kIY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\qr\\6kWf5hLD0HTzFZt1QNrDjIlyUIM2.png"
+    },
+    {
+      "Identity": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\8442cc5d-4741-4c74-9a8d-feca684d6985.png",
+      "SourceId": "B&S Skyline",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\",
+      "BasePath": "_content/B&S Skyline",
+      "RelativePath": "qr/8442cc5d-4741-4c74-9a8d-feca684d6985#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "rw7feqbxuf",
+      "Integrity": "yzsML98iecgTKhqlxgYzjnFkoWCPaTh1J7JtxrWFO0k=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\qr\\8442cc5d-4741-4c74-9a8d-feca684d6985.png"
+    },
+    {
+      "Identity": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\CDFTTkFbp2YTlZygDLyQZp27c5w2.png",
+      "SourceId": "B&S Skyline",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\",
+      "BasePath": "_content/B&S Skyline",
+      "RelativePath": "qr/CDFTTkFbp2YTlZygDLyQZp27c5w2#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "koi47vmh9g",
+      "Integrity": "lBr3XmRy7XBzAlI8C0sGAtrO+w9W8lg4zsOZMrwtb2Y=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\qr\\CDFTTkFbp2YTlZygDLyQZp27c5w2.png"
+    },
+    {
+      "Identity": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\HqNJITiQMhacf3TBMVxs4ZjB7H52.png",
+      "SourceId": "B&S Skyline",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\",
+      "BasePath": "_content/B&S Skyline",
+      "RelativePath": "qr/HqNJITiQMhacf3TBMVxs4ZjB7H52#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "j3wkdu2mni",
+      "Integrity": "f+TROSwGJAdP74jRx3ijQKLeR2WScF95WOHc1gDBDdk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\qr\\HqNJITiQMhacf3TBMVxs4ZjB7H52.png"
+    },
+    {
+      "Identity": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\YwjRD9YyHkNDJkZkz3Jj8SKo7st1.png",
+      "SourceId": "B&S Skyline",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\",
+      "BasePath": "_content/B&S Skyline",
+      "RelativePath": "qr/YwjRD9YyHkNDJkZkz3Jj8SKo7st1#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "smr38f45qa",
+      "Integrity": "XC0bxiGBxqqP20dLePRunTyOnGJcyvz342dqi+mpqCg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\qr\\YwjRD9YyHkNDJkZkz3Jj8SKo7st1.png"
     }
   ],
   "Endpoints": [
@@ -1364,7 +1469,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 30 Mar 2025 16:13:49 GMT"
+          "Value": "Wed, 23 Apr 2025 00:24:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1401,7 +1506,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 30 Mar 2025 16:13:49 GMT"
+          "Value": "Wed, 23 Apr 2025 00:24:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1446,7 +1551,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 30 Mar 2025 16:13:49 GMT"
+          "Value": "Wed, 23 Apr 2025 00:24:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1491,7 +1596,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 30 Mar 2025 16:13:49 GMT"
+          "Value": "Wed, 23 Apr 2025 00:24:17 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6504,6 +6609,416 @@
         {
           "Name": "integrity",
           "Value": "sha256-16aFlqtpsG9RyieKZUUUjkJpqTgcJtWXwT312I4Iz1s="
+        }
+      ]
+    },
+    {
+      "Route": "qr/6kWf5hLD0HTzFZt1QNrDjIlyUIM2.png",
+      "AssetFile": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\6kWf5hLD0HTzFZt1QNrDjIlyUIM2.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "894"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"b6ZzKAy3UZwtpclk0hrI2jAIvHYbfLFTTHNDAer1kIY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 00:45:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-b6ZzKAy3UZwtpclk0hrI2jAIvHYbfLFTTHNDAer1kIY="
+        }
+      ]
+    },
+    {
+      "Route": "qr/6kWf5hLD0HTzFZt1QNrDjIlyUIM2.rh3nlwowzc.png",
+      "AssetFile": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\6kWf5hLD0HTzFZt1QNrDjIlyUIM2.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "894"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"b6ZzKAy3UZwtpclk0hrI2jAIvHYbfLFTTHNDAer1kIY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 00:45:00 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rh3nlwowzc"
+        },
+        {
+          "Name": "label",
+          "Value": "qr/6kWf5hLD0HTzFZt1QNrDjIlyUIM2.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-b6ZzKAy3UZwtpclk0hrI2jAIvHYbfLFTTHNDAer1kIY="
+        }
+      ]
+    },
+    {
+      "Route": "qr/8442cc5d-4741-4c74-9a8d-feca684d6985.png",
+      "AssetFile": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\8442cc5d-4741-4c74-9a8d-feca684d6985.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "890"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yzsML98iecgTKhqlxgYzjnFkoWCPaTh1J7JtxrWFO0k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 02:14:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yzsML98iecgTKhqlxgYzjnFkoWCPaTh1J7JtxrWFO0k="
+        }
+      ]
+    },
+    {
+      "Route": "qr/8442cc5d-4741-4c74-9a8d-feca684d6985.rw7feqbxuf.png",
+      "AssetFile": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\8442cc5d-4741-4c74-9a8d-feca684d6985.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "890"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yzsML98iecgTKhqlxgYzjnFkoWCPaTh1J7JtxrWFO0k=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 02:14:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rw7feqbxuf"
+        },
+        {
+          "Name": "label",
+          "Value": "qr/8442cc5d-4741-4c74-9a8d-feca684d6985.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-yzsML98iecgTKhqlxgYzjnFkoWCPaTh1J7JtxrWFO0k="
+        }
+      ]
+    },
+    {
+      "Route": "qr/CDFTTkFbp2YTlZygDLyQZp27c5w2.koi47vmh9g.png",
+      "AssetFile": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\CDFTTkFbp2YTlZygDLyQZp27c5w2.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "882"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lBr3XmRy7XBzAlI8C0sGAtrO+w9W8lg4zsOZMrwtb2Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 01:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "koi47vmh9g"
+        },
+        {
+          "Name": "label",
+          "Value": "qr/CDFTTkFbp2YTlZygDLyQZp27c5w2.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-lBr3XmRy7XBzAlI8C0sGAtrO+w9W8lg4zsOZMrwtb2Y="
+        }
+      ]
+    },
+    {
+      "Route": "qr/CDFTTkFbp2YTlZygDLyQZp27c5w2.png",
+      "AssetFile": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\CDFTTkFbp2YTlZygDLyQZp27c5w2.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "882"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"lBr3XmRy7XBzAlI8C0sGAtrO+w9W8lg4zsOZMrwtb2Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 01:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-lBr3XmRy7XBzAlI8C0sGAtrO+w9W8lg4zsOZMrwtb2Y="
+        }
+      ]
+    },
+    {
+      "Route": "qr/HqNJITiQMhacf3TBMVxs4ZjB7H52.j3wkdu2mni.png",
+      "AssetFile": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\HqNJITiQMhacf3TBMVxs4ZjB7H52.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "884"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"f+TROSwGJAdP74jRx3ijQKLeR2WScF95WOHc1gDBDdk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 00:29:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "j3wkdu2mni"
+        },
+        {
+          "Name": "label",
+          "Value": "qr/HqNJITiQMhacf3TBMVxs4ZjB7H52.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-f+TROSwGJAdP74jRx3ijQKLeR2WScF95WOHc1gDBDdk="
+        }
+      ]
+    },
+    {
+      "Route": "qr/HqNJITiQMhacf3TBMVxs4ZjB7H52.png",
+      "AssetFile": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\HqNJITiQMhacf3TBMVxs4ZjB7H52.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "884"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"f+TROSwGJAdP74jRx3ijQKLeR2WScF95WOHc1gDBDdk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 00:29:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-f+TROSwGJAdP74jRx3ijQKLeR2WScF95WOHc1gDBDdk="
+        }
+      ]
+    },
+    {
+      "Route": "qr/YwjRD9YyHkNDJkZkz3Jj8SKo7st1.png",
+      "AssetFile": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\YwjRD9YyHkNDJkZkz3Jj8SKo7st1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "889"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XC0bxiGBxqqP20dLePRunTyOnGJcyvz342dqi+mpqCg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 00:35:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-XC0bxiGBxqqP20dLePRunTyOnGJcyvz342dqi+mpqCg="
+        }
+      ]
+    },
+    {
+      "Route": "qr/YwjRD9YyHkNDJkZkz3Jj8SKo7st1.smr38f45qa.png",
+      "AssetFile": "C:\\Users\\Josep\\source\\repos\\B&S Skyline\\B&S Skyline\\wwwroot\\qr\\YwjRD9YyHkNDJkZkz3Jj8SKo7st1.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "889"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"XC0bxiGBxqqP20dLePRunTyOnGJcyvz342dqi+mpqCg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 23 Apr 2025 00:35:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "smr38f45qa"
+        },
+        {
+          "Name": "label",
+          "Value": "qr/YwjRD9YyHkNDJkZkz3Jj8SKo7st1.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-XC0bxiGBxqqP20dLePRunTyOnGJcyvz342dqi+mpqCg="
         }
       ]
     }

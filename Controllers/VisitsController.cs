@@ -1,5 +1,7 @@
 ﻿using B_S_Skyline.Filters;
+using B_S_Skyline.Misc;
 using B_S_Skyline.Models;
+using B_S_Skyline.Models.ViewModel;
 using B_S_Skyline.Services;
 using Firebase.Database;
 using Firebase.Database.Query;
@@ -60,34 +62,45 @@ namespace B_S_Skyline.Controllers
         {
             try
             {
-                // Step 1: Retrieve the resident's ProjectId from the Users table
-                var residentSnapshot = await _firebase.Child("Users").Child(_currentUserId).OnceSingleAsync<UserModel>();
+                var residentSnapshot = 
+                    await _firebase
+                    .Child("Users")
+                    .Child(_currentUserId)
+                    .OnceSingleAsync<UserModel>();
+
                 if (residentSnapshot == null || string.IsNullOrEmpty(residentSnapshot.ProjectId))
                 {
                     TempData["ErrorMessage"] = "You are not assigned to any project. Please contact support.";
-                    return View(visit); // Return the view with an error
+                    return View(visit);
                 }
 
-                // Step 2: Attach the ProjectId to the visit
                 visit.ProjectId = residentSnapshot.ProjectId;
-
-                // Step 3: Preserve the existing functionality
                 visit.IsDelivery = visit.DeliveryService.HasValue && visit.DeliveryService != Visit.DeliveryServiceType.None;
                 visit.EntryTime = DateTime.Now;
                 visit.ResidentId = _currentUserId;
 
-                // Step 4: Save the visit to the Visits table in Firebase
+                if (visit.WantsEasyPass)
+                {
+                    string qrCodePath = QRHelper.GenerateQRCode(Guid.NewGuid().ToString());
+                    visit.QRCodePath = qrCodePath;
+
+                    await AppHelper.SendEasyPassEmail(
+                        residentSnapshot.Email, 
+                        residentSnapshot.Name, 
+                        visit, 
+                        qrCodePath,
+                        residentSnapshot.ProjectId);
+                }
+
                 await _firebase.Child("visits").PostAsync(visit);
 
-                // Step 5: Return success message and redirect to the Index page
                 TempData["SuccessMessage"] = "Visit created successfully!";
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
             {
-                // Step 6: Handle any errors and display an error message
                 TempData["ErrorMessage"] = $"An error occurred while creating the visit: {ex.Message}";
-                return View(visit); // Return the view with the error
+                return View(visit);
             }
         }
         [HttpGet]
@@ -355,7 +368,6 @@ namespace B_S_Skyline.Controllers
                 return View(vehicle);
             }
         }
-
         [HttpPost]
         public async Task<IActionResult> DeleteVehicle(string id)
         {
@@ -375,6 +387,39 @@ namespace B_S_Skyline.Controllers
                 TempData["ErrorMessage"] = $"Error deleting vehicle: {ex.Message}";
             }
             return RedirectToAction(nameof(Vehicles));
+        }
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            return View(new ChangePasswordModel());
+        }
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                var residentSnapshot = await _firebase.Child("Users").Child(_currentUserId).OnceSingleAsync<UserModel>();
+                if (residentSnapshot == null)
+                {
+                    TempData["Error"] = "User not found. Please log in again.";
+                    return View(model);
+                }
+
+                await FirebaseAuthHelper.ChangePasswordAsync(model.CurrentPassword, model.NewPassword, residentSnapshot.Email);
+
+                TempData["Success"] = "Password updated successfully!";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = $"Failed to update password: {ex.Message}";
+                return View(model);
+            }
         }
     }
 }

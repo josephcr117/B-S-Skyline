@@ -21,6 +21,8 @@ namespace B_S_Skyline.Models
         public string LicensePlate { get; set; }
         public string ProjectId { get; set; }
         public bool ApprovedBySecurity { get; set; }
+        public bool WantsEasyPass { get; set; }
+        public string QRCodePath { get; set; }
         [Display(Name = "Is Delivery")]
         public bool IsDelivery { get; set; }
         [JsonConverter(typeof(JsonStringEnumConverter))]
@@ -28,16 +30,17 @@ namespace B_S_Skyline.Models
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public enum DeliveryServiceType
         {
-            [Display(Name = "Uber Eats")]
+            [Display(Name = "None")]
             None = 0,
-            [Display(Name = "Rappi")]
+            [Display(Name = "Uber Eats")]
             UberEats= 1,
-            [Display(Name = "Didi")]
+            [Display(Name = "Rappi")]
             Rappi = 2,
-            [Display(Name = "PedidosYa")]
+            [Display(Name = "Didi")]
             Didi = 3,
-            [Display(Name = "Other")]
+            [Display(Name = "PedidosYa")]
             PedidosYa = 4,
+            [Display(Name = "Other")]
             Other = 5
         }
         public enum VisitType
